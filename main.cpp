@@ -17,27 +17,28 @@ void colorBlueGraphics();
 void colorYellowGraphics();
 void colorGreenGraphics();
 void colorTransparentGraphics();
+void rollDiceRandom(string);
+void diceFunction(int &, int, int, int);
 
 char blue[12][12], red[12][12], yellow[12][12], green[12][12];
 char path[72], gotiblue[4] = {'a', 'b', 'c', 'd'}, gotired[4] = {'e', 'f', 'g', 'h'}, gotiyellow[4] = {'i', 'j', 'k', 'l'}, gotigreen[4] = {'m', 'n', 'o', 'p'}, inputText, rollDice;
-int countblue, countred, countgreen, countyellow, winblue, winred, wingreen, winyellow, winner, randomNumber, gotiNumber, d, e, f, g, i, j, k, l, m, n, o, p, q, r, s, t, noOfPlayers;
+int a,b,i = 0, j = 0, k = 0, l = 0, d = 13, e = 13, f = 13, g = 13, m = 26, n = 26, o = 26, p = 26, q = 39, r = 39, s = 39, t = 39, countblue = 0, countred = 0, countgreen = 0, countyellow = 0, winblue = 0, winred = 0, wingreen = 0, winyellow = 0, winner = 0, randomNumber, gotiNumber, noOfPlayers;
 string winner1, winner2, winner3, winner4;
 int main()
 {
-	for (i = 0; i < 72; i++)
-		path[i] = ' ';
-	for (i = 0; i < 12; i++)
+	for (a = 0; a < 72; a++)
+		path[a] = ' ';
+	for (a = 0; a < 12; a++)
 	{
-		for (int j = 0; j < 12; j++)
+		for (int b = 0; b < 12; b++)
 		{
-			blue[i][j] = ' ';
-			red[i][j] = ' ';
-			yellow[i][j] = ' ';
-			green[i][j] = ' ';
+			blue[a][b] = ' ';
+			red[a][b] = ' ';
+			yellow[a][b] = ' ';
+			green[a][b] = ' ';
 		}
 	}
-	i = 0, j = 0, k = 0, l = 0, d = 13, e = 13, f = 13, g = 13, m = 26, n = 26, o = 26, p = 26, q = 39, r = 39, s = 39, t = 39;
-	countblue = 0, countred = 0, countgreen = 0, countyellow = 0, winblue = 0, winred = 0, wingreen = 0, winyellow = 0, winner = 0;
+	
 	blue[5][5] = gotiblue[0], blue[5][6] = gotiblue[1], blue[6][5] = gotiblue[2], blue[6][6] = gotiblue[3];
 	red[5][5] = gotired[0], red[5][6] = gotired[1], red[6][5] = gotired[2], red[6][6] = gotired[3];
 	green[5][5] = gotigreen[0], green[5][6] = gotigreen[1], green[6][5] = gotigreen[2], green[6][6] = gotigreen[3];
@@ -81,25 +82,157 @@ void colorTransparentGraphics()
 {
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15 | FOREGROUND_INTENSITY);
 }
-
+void diceFunction(int &m, int no, int no2, int no3){
+	if (m + randomNumber > no2-1 && m + randomNumber < no2+6)
+	{
+		path[m] = ' ';
+		if (m + randomNumber == no2)
+		{
+			if (randomNumber == 1)
+				m = -1;
+			if (randomNumber == 2)
+				m = -2;
+			if (randomNumber == 3)
+				m = -3;
+			if (randomNumber == 4)
+				m = -4;
+			if (randomNumber == 5)
+				m = -5;
+			if (randomNumber == 6)
+				m = -6;
+		}
+		if (m + randomNumber == no2+1)
+		{
+			if (randomNumber == 2)
+				m = -1;
+			if (randomNumber == 3)
+				m = -2;
+			if (randomNumber == 4)
+				m = -3;
+			if (randomNumber == 5)
+				m = -4;
+			if (randomNumber == 6)
+				m = -5;
+		}
+		if (m + randomNumber == no2+2)
+		{
+			if (randomNumber == 3)
+				m = -1;
+			if (randomNumber == 4)
+				m = -2;
+			if (randomNumber == 5)
+				m = -3;
+			if (randomNumber == 6)
+				m = -4;
+		}
+		if (m + randomNumber == no2+3)
+		{
+			if (randomNumber == 4)
+				m = -1;
+			if (randomNumber == 5)
+				m = -2;
+			if (randomNumber == 6)
+				m = -3;
+		}
+		if (m + randomNumber == no2+4)
+		{
+			if (randomNumber == 5)
+				m = -1;
+			if (randomNumber == 6)
+				m = -2;
+		}
+		if (m + randomNumber == no2+5)
+		{
+			if (randomNumber == 6)
+				m = -1;
+		}
+	}
+	if (m < no)
+	{
+		if (m + randomNumber > no-1 && m + randomNumber < no+6)
+		{
+			path[m] = ' ';
+			if (m + randomNumber == no)
+			{
+				if (randomNumber == 1)
+					m = no3;
+				if (randomNumber == 2)
+					m = no3-1;
+				if (randomNumber == 3)
+					m = no3-2;
+				if (randomNumber == 4)
+					m = no3-3;
+				if (randomNumber == 5)
+					m = no3-4;
+				if (randomNumber == 6)
+					m = no3-5;
+			}
+			if (m + randomNumber == no+1)
+			{
+				if (randomNumber == 2)
+					m = no3;
+				if (randomNumber == 3)
+					m = no3-1;
+				if (randomNumber == 4)
+					m = no3-2;
+				if (randomNumber == 5)
+					m = no3-3;
+				if (randomNumber == 6)
+					m = no3-4;
+			}
+			if (m + randomNumber == no+2)
+			{
+				if (randomNumber == 3)
+					m = no3;
+				if (randomNumber == 4)
+					m = no3-1;
+				if (randomNumber == 5)
+					m = no3-2;
+				if (randomNumber == 6)
+					m = no3-3;
+			}
+			if (m + randomNumber == no+3)
+			{
+				if (randomNumber == 4)
+					m = no3;
+				if (randomNumber == 5)
+					m = no3-1;
+				if (randomNumber == 6)
+					m = no3-2;
+			}
+			if (m + randomNumber == no+4)
+			{
+				if (randomNumber == 5)
+					m = no3;
+				if (randomNumber == 6)
+					m = no3-1;
+			}
+			if (m + randomNumber == no+5)
+			{
+				if (randomNumber == 6)
+					m = no3;
+			}
+		}
+	}
+}
 void graphics()
 {
-	for (int i = 0; i < 12; i++)
-		for (int j = 0; j < 26; j++)
+	for (a = 0; a < 12; a++)
+		for (b = 0; b < 26; b++)
 		{
-			if (j < 12)
+			if (b < 12)
 			{
 				colorBlueGraphics();
-				cout << blue[i][j];
+				cout << blue[a][b];
 			}
-			else if (j == 12)
+			else if (b == 12)
 			{
 				colorTransparentGraphics();
-				if (i == 0)
+				if (a == 0)
 				{
 					cout << char(201) << char(205) << char(205) << char(205) << char(205) << char(205) << char(187);
 				}
-				else if (i == 1)
+				else if (a == 1)
 				{
 					cout << char(186);
 					cout << path[10];
@@ -109,11 +242,11 @@ void graphics()
 					cout << path[12];
 					cout << char(186);
 				}
-				else if (i % 2 == 0)
+				else if (a % 2 == 0)
 				{
 					cout << char(186) << char(196) << char(179) << char(196) << char(179) << char(196) << char(186);
 				}
-				else if (i == 3)
+				else if (a == 3)
 				{
 					cout << char(186) << path[9] << char(179);
 					colorRedGraphics();
@@ -125,7 +258,7 @@ void graphics()
 					colorTransparentGraphics();
 					cout << char(186);
 				}
-				else if (i == 5)
+				else if (a == 5)
 				{
 					cout << char(186);
 					colorRedGraphics();
@@ -137,7 +270,7 @@ void graphics()
 					colorTransparentGraphics();
 					cout << char(179) << path[14] << char(186);
 				}
-				else if (i == 7)
+				else if (a == 7)
 				{
 					cout << char(186) << path[7] << char(179);
 					colorRedGraphics();
@@ -145,7 +278,7 @@ void graphics()
 					colorTransparentGraphics();
 					cout << char(179) << path[15] << char(186);
 				}
-				else if (i == 9)
+				else if (a == 9)
 				{
 					cout << char(186) << path[6] << char(179);
 					colorRedGraphics();
@@ -153,7 +286,7 @@ void graphics()
 					colorTransparentGraphics();
 					cout << char(179) << path[16] << char(186);
 				}
-				else if (i == 11)
+				else if (a == 11)
 				{
 					cout << char(186) << path[5] << char(179);
 					colorRedGraphics();
@@ -162,12 +295,12 @@ void graphics()
 					cout << char(179) << path[17] << char(186);
 				}
 			}
-			else if (j < 25 && j > 12)
+			else if (b < 25 && b > 12)
 			{
 				colorRedGraphics();
-				cout << red[i][j - 13];
+				cout << red[a][b - 13];
 			}
-			else if (j == 25)
+			else if (b == 25)
 			{
 				cout << endl;
 			}
@@ -175,102 +308,102 @@ void graphics()
 	colorTransparentGraphics();
 	cout << char(201) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(188) << char(218) << char(196) << char(196) << char(196) << char(191) << char(200) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(187) << endl;
 	cout << char(186) << path[51] << char(179);
-	for (int i = 0; i < 57; i++)
+	for (a = 0; a < 57; a++)
 	{
-		if (i < 5)
+		if (a < 5)
 		{
-			if (i == 0)
+			if (a == 0)
 				colorBlueGraphics();
-			cout << path[i];
+			cout << path[a];
 			colorTransparentGraphics();
-			if (i < 4)
+			if (a < 4)
 				cout << char(179);
 		}
-		else if (i == 5)
+		else if (a == 5)
 		{
 			cout << " " << char(179) << "   " << char(179) << " ";
 		}
-		else if (i > 17 && i < 24)
+		else if (a > 17 && a < 24)
 		{
-			if (i == 21)
+			if (a == 21)
 				colorYellowGraphics();
-			cout << path[i];
+			cout << path[a];
 			colorTransparentGraphics();
-			if (i < 23)
+			if (a < 23)
 				cout << char(179);
-			else if (i == 23)
+			else if (a == 23)
 				cout << char(186);
 		}
-		else if (i == 24)
+		else if (a == 24)
 		{
 			cout << endl;
 			cout << char(186) << char(196) << char(196) << char(196) << char(196) << char(196) << char(196) << char(196) << char(196) << char(196) << char(196) << char(196) << char(196) << char(179) << "   " << char(179) << char(196) << char(196) << char(196) << char(196) << char(196) << char(196) << char(196) << char(196) << char(196) << char(196) << char(196) << char(196) << char(186) << endl;
 			cout << char(186) << path[50] << char(179);
 		}
-		else if (i > 51 && i < 57)
+		else if (a > 51 && a < 57)
 		{
-			if (i > 51)
+			if (a > 51)
 				colorBlueGraphics();
-			cout << path[i];
+			cout << path[a];
 			colorTransparentGraphics();
-			if (i < 56)
+			if (a < 56)
 				cout << char(179);
 		}
 	}
 	cout << " " << char(179) << " " << char(178) << " " << char(179) << " ";
-	for (int i = 66; i > 23; i--)
+	for (a = 66; a > 23; a--)
 	{
-		if (i > 61)
+		if (a > 61)
 		{
 			colorYellowGraphics();
-			cout << path[i];
+			cout << path[a];
 			colorTransparentGraphics();
-			if (i > 61)
+			if (a > 61)
 				cout << char(179);
 		}
-		else if (i == 61)
+		else if (a == 61)
 		{
 			cout << path[24] << char(186);
 			cout << endl;
 			cout << char(186) << char(196) << char(196) << char(196) << char(196) << char(196) << char(196) << char(196) << char(196) << char(196) << char(196) << char(196) << char(196) << char(179) << "   " << char(179) << char(196) << char(196) << char(196) << char(196) << char(196) << char(196) << char(196) << char(196) << char(196) << char(196) << char(196) << char(196) << char(186) << endl;
 		}
-		else if (i < 50 && i > 43 || i < 31 && i > 24)
+		else if (a < 50 && a > 43 || a < 31 && a > 24)
 		{
-			if (i == 49)
+			if (a == 49)
 				cout << char(186);
-			else if (i == 47)
+			else if (a == 47)
 				colorBlueGraphics();
-			else if (i == 26)
+			else if (a == 26)
 				colorYellowGraphics();
-			cout << path[i];
+			cout << path[a];
 			colorTransparentGraphics();
-			if (i == 25)
+			if (a == 25)
 				cout << char(186);
-			else if (i != 44 && i != 25)
+			else if (a != 44 && a != 25)
 				cout << char(179);
 		}
-		else if (i == 43)
+		else if (a == 43)
 		{
 			cout << " " << char(179) << "   " << char(179) << " ";
 		}
-		else if (i == 24)
+		else if (a == 24)
 		{
 			cout << endl;
 			cout << char(200) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(187) << char(192) << char(196) << char(196) << char(196) << char(217) << char(201) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(188) << endl;
 		}
 	}
-	for (int i = 0; i < 12; i++)
-		for (int j = 0; j < 26; j++)
+	for (a = 0; a < 12; a++)
+		for (b = 0; b < 26; b++)
 		{
-			if (j < 12)
+			if (b < 12)
 			{
 				colorGreenGraphics();
-				cout << green[i][j];
+				cout << green[a][b];
 			}
-			else if (j == 12)
+			else if (b == 12)
 			{
 				colorTransparentGraphics();
-				if (i == 0)
+				if (a == 0)
 				{
 					cout << char(186) << path[43] << char(179);
 					colorGreenGraphics();
@@ -278,11 +411,11 @@ void graphics()
 					colorTransparentGraphics();
 					cout << char(179) << path[31] << char(186);
 				}
-				else if (i % 2 != 0 && i != 11)
+				else if (a % 2 != 0 && a != 11)
 				{
 					cout << char(186) << char(196) << char(179) << char(196) << char(179) << char(196) << char(186);
 				}
-				else if (i == 2)
+				else if (a == 2)
 				{
 					cout << char(186) << path[42] << char(179);
 					colorGreenGraphics();
@@ -290,7 +423,7 @@ void graphics()
 					colorTransparentGraphics();
 					cout << char(179) << path[32] << char(186);
 				}
-				else if (i == 4)
+				else if (a == 4)
 				{
 					cout << char(186) << path[41] << char(179);
 					colorGreenGraphics();
@@ -298,7 +431,7 @@ void graphics()
 					colorTransparentGraphics();
 					cout << char(179) << path[33] << char(186);
 				}
-				else if (i == 6)
+				else if (a == 6)
 				{
 					cout << char(186) << path[40] << char(179);
 					colorGreenGraphics();
@@ -310,7 +443,7 @@ void graphics()
 					colorTransparentGraphics();
 					cout << char(186);
 				}
-				else if (i == 8)
+				else if (a == 8)
 				{
 					cout << char(186);
 					colorGreenGraphics();
@@ -322,7 +455,7 @@ void graphics()
 					colorTransparentGraphics();
 					cout << char(179) << path[35] << char(186);
 				}
-				else if (i == 10)
+				else if (a == 10)
 				{
 					cout << char(186);
 					cout << path[38];
@@ -332,426 +465,40 @@ void graphics()
 					cout << path[36];
 					cout << char(186);
 				}
-				else if (i == 11)
+				else if (a == 11)
 				{
 					cout << char(200) << char(205) << char(205) << char(205) << char(205) << char(205) << char(188);
 				}
 			}
-			else if (j < 25 && j > 12)
+			else if (b < 25 && b > 12)
 			{
 				colorYellowGraphics();
-				cout << yellow[i][j - 13];
+				cout << yellow[a][b - 13];
 			}
-			else if (j == 25)
+			else if (b == 25)
 			{
 				colorTransparentGraphics();
 				cout << endl;
 			}
 		}
 }
+void rollDiceRandom(string turn){
+	cout << "It's the " << turn << " turn";
+	srand(time(0));
+	cout << "\nRoll dice by pressing any alphabet: ";
+	cin >> rollDice;
+	randomNumber = 1 + rand() % 6;
+	cout << "Your dice gave: " << randomNumber << endl;
+}
 void fgreen(int &q, int &r, int &s, int &t, int noOfPlayers)
 {
 	if (wingreen != 4)
 	{
-		cout << "It's the green turn.";
-		srand(time(0));
-		cout << "\nRoll dice by pressing any alphabet: ";
-		cin >> rollDice;
-		randomNumber = 1 + rand() % 6;
-		cout << "Your dice gave: " << randomNumber << endl;
-		if (q + randomNumber > 51 && q + randomNumber < 58)
-		{
-			path[q] = ' ';
-			if (q + randomNumber == 52)
-			{
-				if (randomNumber == 1)
-					q = -1;
-				if (randomNumber == 2)
-					q = -2;
-				if (randomNumber == 3)
-					q = -3;
-				if (randomNumber == 4)
-					q = -4;
-				if (randomNumber == 5)
-					q = -5;
-				if (randomNumber == 6)
-					q = -6;
-			}
-			if (q + randomNumber == 53)
-			{
-				if (randomNumber == 2)
-					q = -1;
-				if (randomNumber == 3)
-					q = -2;
-				if (randomNumber == 4)
-					q = -3;
-				if (randomNumber == 5)
-					q = -4;
-				if (randomNumber == 6)
-					q = -5;
-			}
-			if (q + randomNumber == 54)
-			{
-				if (randomNumber == 3)
-					q = -1;
-				if (randomNumber == 4)
-					q = -2;
-				if (randomNumber == 5)
-					q = -3;
-				if (randomNumber == 6)
-					q = -4;
-			}
-			if (q + randomNumber == 55)
-			{
-				if (randomNumber == 4)
-					q = -1;
-				if (randomNumber == 5)
-					q = -2;
-				if (randomNumber == 6)
-					q = -3;
-			}
-			if (q + randomNumber == 56)
-			{
-				if (randomNumber == 5)
-					q = -1;
-				if (randomNumber == 6)
-					q = -2;
-			}
-			if (q + randomNumber == 57)
-			{
-				if (randomNumber == 6)
-					q = -1;
-			}
-		}
-		if (q < 38)
-		{
-			if (q + randomNumber > 37 && q + randomNumber < 44)
-			{
-				path[q] = ' ';
-				if (q + randomNumber == 38)
-				{
-					if (randomNumber == 1)
-						q = 66;
-					if (randomNumber == 2)
-						q = 65;
-					if (randomNumber == 3)
-						q = 64;
-					if (randomNumber == 4)
-						q = 63;
-					if (randomNumber == 5)
-						q = 62;
-					if (randomNumber == 6)
-						q = 61;
-				}
-				if (q + randomNumber == 39)
-				{
-					if (randomNumber == 2)
-						q = 66;
-					if (randomNumber == 3)
-						q = 65;
-					if (randomNumber == 4)
-						q = 64;
-					if (randomNumber == 5)
-						q = 63;
-					if (randomNumber == 6)
-						q = 62;
-				}
-				if (q + randomNumber == 40)
-				{
-					if (randomNumber == 3)
-						q = 66;
-					if (randomNumber == 4)
-						q = 65;
-					if (randomNumber == 5)
-						q = 64;
-					if (randomNumber == 6)
-						q = 63;
-				}
-				if (q + randomNumber == 41)
-				{
-					if (randomNumber == 4)
-						q = 66;
-					if (randomNumber == 5)
-						q = 65;
-					if (randomNumber == 6)
-						q = 64;
-				}
-				if (q + randomNumber == 42)
-				{
-					if (randomNumber == 5)
-						q = 66;
-					if (randomNumber == 6)
-						q = 65;
-				}
-				if (q + randomNumber == 43)
-				{
-					if (randomNumber == 6)
-						q = 66;
-				}
-			}
-		}
-		if (r + randomNumber > 51 && r + randomNumber < 58)
-		{
-			path[r] = ' ';
-			if (r + randomNumber == 52)
-			{
-				if (randomNumber == 1)
-					r = -1;
-				if (randomNumber == 2)
-					r = -2;
-				if (randomNumber == 3)
-					r = -3;
-				if (randomNumber == 4)
-					r = -4;
-				if (randomNumber == 5)
-					r = -5;
-				if (randomNumber == 6)
-					r = -6;
-			}
-			if (r + randomNumber == 53)
-			{
-				if (randomNumber == 2)
-					r = -1;
-				if (randomNumber == 3)
-					r = -2;
-				if (randomNumber == 4)
-					r = -3;
-				if (randomNumber == 5)
-					r = -4;
-				if (randomNumber == 6)
-					r = -5;
-			}
-			if (r + randomNumber == 54)
-			{
-				if (randomNumber == 3)
-					r = -1;
-				if (randomNumber == 4)
-					r = -2;
-				if (randomNumber == 5)
-					r = -3;
-				if (randomNumber == 6)
-					r = -4;
-			}
-			if (r + randomNumber == 55)
-			{
-				if (randomNumber == 4)
-					r = -1;
-				if (randomNumber == 5)
-					r = -2;
-				if (randomNumber == 6)
-					r = -3;
-			}
-			if (r + randomNumber == 56)
-			{
-				if (randomNumber == 5)
-					r = -1;
-				if (randomNumber == 6)
-					r = -2;
-			}
-			if (r + randomNumber == 57)
-			{
-				if (randomNumber == 6)
-					r = -1;
-			}
-		}
-		if (r < 38)
-		{
-			if (r + randomNumber > 37 && r + randomNumber < 44)
-			{
-				path[r] = ' ';
-				if (r + randomNumber == 38)
-				{
-					if (randomNumber == 1)
-						r = 66;
-					if (randomNumber == 2)
-						r = 65;
-					if (randomNumber == 3)
-						r = 64;
-					if (randomNumber == 4)
-						r = 63;
-					if (randomNumber == 5)
-						r = 62;
-					if (randomNumber == 6)
-						r = 61;
-				}
-				if (r + randomNumber == 39)
-				{
-					if (randomNumber == 2)
-						r = 66;
-					if (randomNumber == 3)
-						r = 65;
-					if (randomNumber == 4)
-						r = 64;
-					if (randomNumber == 5)
-						r = 63;
-					if (randomNumber == 6)
-						r = 62;
-				}
-				if (r + randomNumber == 40)
-				{
-					if (randomNumber == 3)
-						r = 66;
-					if (randomNumber == 4)
-						r = 65;
-					if (randomNumber == 5)
-						r = 64;
-					if (randomNumber == 6)
-						r = 63;
-				}
-				if (r + randomNumber == 41)
-				{
-					if (randomNumber == 4)
-						r = 66;
-					if (randomNumber == 5)
-						r = 65;
-					if (randomNumber == 6)
-						r = 64;
-				}
-				if (r + randomNumber == 42)
-				{
-					if (randomNumber == 5)
-						r = 66;
-					if (randomNumber == 6)
-						r = 65;
-				}
-				if (r + randomNumber == 43)
-				{
-					if (randomNumber == 6)
-						r = 66;
-				}
-			}
-		}
-		if (s + randomNumber > 51 && s + randomNumber < 58)
-		{
-			path[s] = ' ';
-			if (s + randomNumber == 52)
-			{
-				if (randomNumber == 1)
-					s = -1;
-				if (randomNumber == 2)
-					s = -2;
-				if (randomNumber == 3)
-					s = -3;
-				if (randomNumber == 4)
-					s = -4;
-				if (randomNumber == 5)
-					s = -5;
-				if (randomNumber == 6)
-					s = -6;
-			}
-			if (s + randomNumber == 53)
-			{
-				if (randomNumber == 2)
-					s = -1;
-				if (randomNumber == 3)
-					s = -2;
-				if (randomNumber == 4)
-					s = -3;
-				if (randomNumber == 5)
-					s = -4;
-				if (randomNumber == 6)
-					s = -5;
-			}
-			if (s + randomNumber == 54)
-			{
-				if (randomNumber == 3)
-					s = -1;
-				if (randomNumber == 4)
-					s = -2;
-				if (randomNumber == 5)
-					s = -3;
-				if (randomNumber == 6)
-					s = -4;
-			}
-			if (s + randomNumber == 55)
-			{
-				if (randomNumber == 4)
-					s = -1;
-				if (randomNumber == 5)
-					s = -2;
-				if (randomNumber == 6)
-					s = -3;
-			}
-			if (s + randomNumber == 56)
-			{
-				if (randomNumber == 5)
-					s = -1;
-				if (randomNumber == 6)
-					s = -2;
-			}
-			if (s + randomNumber == 57)
-			{
-				if (randomNumber == 6)
-					s = -1;
-			}
-		}
-		if (s < 38)
-		{
-			if (s + randomNumber > 37 && s + randomNumber < 44)
-			{
-				path[s] = ' ';
-				if (s + randomNumber == 38)
-				{
-					if (randomNumber == 1)
-						s = 66;
-					if (randomNumber == 2)
-						s = 65;
-					if (randomNumber == 3)
-						s = 64;
-					if (randomNumber == 4)
-						s = 63;
-					if (randomNumber == 5)
-						s = 62;
-					if (randomNumber == 6)
-						s = 61;
-				}
-				if (s + randomNumber == 39)
-				{
-					if (randomNumber == 2)
-						s = 66;
-					if (randomNumber == 3)
-						s = 65;
-					if (randomNumber == 4)
-						s = 64;
-					if (randomNumber == 5)
-						s = 63;
-					if (randomNumber == 6)
-						s = 62;
-				}
-				if (s + randomNumber == 40)
-				{
-					if (randomNumber == 3)
-						s = 66;
-					if (randomNumber == 4)
-						s = 65;
-					if (randomNumber == 5)
-						s = 64;
-					if (randomNumber == 6)
-						s = 63;
-				}
-				if (s + randomNumber == 41)
-				{
-					if (randomNumber == 4)
-						s = 66;
-					if (randomNumber == 5)
-						s = 65;
-					if (randomNumber == 6)
-						s = 64;
-				}
-				if (s + randomNumber == 42)
-				{
-					if (randomNumber == 5)
-						s = 66;
-					if (randomNumber == 6)
-						s = 65;
-				}
-				if (s + randomNumber == 43)
-				{
-					if (randomNumber == 6)
-						s = 66;
-				}
-			}
-		}
+		rollDiceRandom("green");
+		diceFunction(q, 38, 52, 66);
+		diceFunction(r, 38, 52, 66);
+		diceFunction(s, 38, 52, 66);
+		diceFunction(t, 38, 52, 66);
 		if (randomNumber != 6 && countgreen == 0)
 		{
 			cout << "You cannot move. ";
@@ -969,12 +716,7 @@ void fyellow(int &m, int &n, int &o, int &p, int noOfPlayers)
 {
 	if (winyellow != 4)
 	{
-		cout << "It's the yellow turn.";
-		srand(time(0));
-		cout << "\nRoll dice by pressing any alphabet: ";
-		cin >> rollDice;
-		randomNumber = 1 + rand() % 6;
-		cout << "Your dice gave: " << randomNumber << endl;
+		rollDiceRandom("yellow");
 		if (randomNumber != 6 && countyellow == 0)
 		{
 			cout << "You cannot move. ";
@@ -986,530 +728,10 @@ void fyellow(int &m, int &n, int &o, int &p, int noOfPlayers)
 			else
 				fgreen(q, r, s, t, noOfPlayers);
 		}
-		if (m + randomNumber > 51 && m + randomNumber < 58)
-		{
-			path[m] = ' ';
-			if (m + randomNumber == 52)
-			{
-				if (randomNumber == 1)
-					m = -1;
-				if (randomNumber == 2)
-					m = -2;
-				if (randomNumber == 3)
-					m = -3;
-				if (randomNumber == 4)
-					m = -4;
-				if (randomNumber == 5)
-					m = -5;
-				if (randomNumber == 6)
-					m = -6;
-			}
-			if (m + randomNumber == 53)
-			{
-				if (randomNumber == 2)
-					m = -1;
-				if (randomNumber == 3)
-					m = -2;
-				if (randomNumber == 4)
-					m = -3;
-				if (randomNumber == 5)
-					m = -4;
-				if (randomNumber == 6)
-					m = -5;
-			}
-			if (m + randomNumber == 54)
-			{
-				if (randomNumber == 3)
-					m = -1;
-				if (randomNumber == 4)
-					m = -2;
-				if (randomNumber == 5)
-					m = -3;
-				if (randomNumber == 6)
-					m = -4;
-			}
-			if (m + randomNumber == 55)
-			{
-				if (randomNumber == 4)
-					m = -1;
-				if (randomNumber == 5)
-					m = -2;
-				if (randomNumber == 6)
-					m = -3;
-			}
-			if (m + randomNumber == 56)
-			{
-				if (randomNumber == 5)
-					m = -1;
-				if (randomNumber == 6)
-					m = -2;
-			}
-			if (m + randomNumber == 57)
-			{
-				if (randomNumber == 6)
-					m = -1;
-			}
-		}
-		if (m < 25)
-		{
-			if (m + randomNumber > 24 && m + randomNumber < 31)
-			{
-				path[m] = ' ';
-				if (m + randomNumber == 25)
-				{
-					if (randomNumber == 1)
-						m = 61;
-					if (randomNumber == 2)
-						m = 60;
-					if (randomNumber == 3)
-						m = 59;
-					if (randomNumber == 4)
-						m = 58;
-					if (randomNumber == 5)
-						m = 57;
-					if (randomNumber == 6)
-						m = 56;
-				}
-				if (m + randomNumber == 26)
-				{
-					if (randomNumber == 2)
-						m = 61;
-					if (randomNumber == 3)
-						m = 60;
-					if (randomNumber == 4)
-						m = 59;
-					if (randomNumber == 5)
-						m = 58;
-					if (randomNumber == 6)
-						m = 57;
-				}
-				if (m + randomNumber == 27)
-				{
-					if (randomNumber == 3)
-						m = 61;
-					if (randomNumber == 4)
-						m = 60;
-					if (randomNumber == 5)
-						m = 59;
-					if (randomNumber == 6)
-						m = 58;
-				}
-				if (m + randomNumber == 28)
-				{
-					if (randomNumber == 4)
-						m = 61;
-					if (randomNumber == 5)
-						m = 60;
-					if (randomNumber == 6)
-						m = 59;
-				}
-				if (m + randomNumber == 29)
-				{
-					if (randomNumber == 5)
-						m = 61;
-					if (randomNumber == 6)
-						m = 60;
-				}
-				if (m + randomNumber == 17)
-				{
-					if (randomNumber == 6)
-						m = 61;
-				}
-			}
-		}
-		if (n + randomNumber > 51 && n + randomNumber < 58)
-		{
-			path[n] = ' ';
-			if (n + randomNumber == 52)
-			{
-				if (randomNumber == 1)
-					n = -1;
-				if (randomNumber == 2)
-					n = -2;
-				if (randomNumber == 3)
-					n = -3;
-				if (randomNumber == 4)
-					n = -4;
-				if (randomNumber == 5)
-					n = -5;
-				if (randomNumber == 6)
-					n = -6;
-			}
-			if (n + randomNumber == 53)
-			{
-				if (randomNumber == 2)
-					n = -1;
-				if (randomNumber == 3)
-					n = -2;
-				if (randomNumber == 4)
-					n = -3;
-				if (randomNumber == 5)
-					n = -4;
-				if (randomNumber == 6)
-					n = -5;
-			}
-			if (n + randomNumber == 54)
-			{
-				if (randomNumber == 3)
-					n = -1;
-				if (randomNumber == 4)
-					n = -2;
-				if (randomNumber == 5)
-					n = -3;
-				if (randomNumber == 6)
-					n = -4;
-			}
-			if (n + randomNumber == 55)
-			{
-				if (randomNumber == 4)
-					n = -1;
-				if (randomNumber == 5)
-					n = -2;
-				if (randomNumber == 6)
-					n = -3;
-			}
-			if (n + randomNumber == 56)
-			{
-				if (randomNumber == 5)
-					n = -1;
-				if (randomNumber == 6)
-					n = -2;
-			}
-			if (n + randomNumber == 57)
-			{
-				if (randomNumber == 6)
-					n = -1;
-			}
-		}
-		if (n < 25)
-		{
-			if (n + randomNumber > 24 && n + randomNumber < 31)
-			{
-				path[n] = ' ';
-				if (n + randomNumber == 25)
-				{
-					if (randomNumber == 1)
-						n = 61;
-					if (randomNumber == 2)
-						n = 60;
-					if (randomNumber == 3)
-						n = 59;
-					if (randomNumber == 4)
-						n = 58;
-					if (randomNumber == 5)
-						n = 57;
-					if (randomNumber == 6)
-						n = 56;
-				}
-				if (n + randomNumber == 26)
-				{
-					if (randomNumber == 2)
-						n = 61;
-					if (randomNumber == 3)
-						n = 60;
-					if (randomNumber == 4)
-						n = 59;
-					if (randomNumber == 5)
-						n = 58;
-					if (randomNumber == 6)
-						n = 57;
-				}
-				if (n + randomNumber == 27)
-				{
-					if (randomNumber == 3)
-						n = 61;
-					if (randomNumber == 4)
-						n = 60;
-					if (randomNumber == 5)
-						n = 59;
-					if (randomNumber == 6)
-						n = 58;
-				}
-				if (n + randomNumber == 28)
-				{
-					if (randomNumber == 4)
-						n = 61;
-					if (randomNumber == 5)
-						n = 60;
-					if (randomNumber == 6)
-						n = 59;
-				}
-				if (n + randomNumber == 29)
-				{
-					if (randomNumber == 5)
-						n = 61;
-					if (randomNumber == 6)
-						n = 60;
-				}
-				if (n + randomNumber == 17)
-				{
-					if (randomNumber == 6)
-						n = 61;
-				}
-			}
-		}
-		if (o + randomNumber > 51 && o + randomNumber < 58)
-		{
-			path[o] = ' ';
-			if (o + randomNumber == 52)
-			{
-				if (randomNumber == 1)
-					o = -1;
-				if (randomNumber == 2)
-					o = -2;
-				if (randomNumber == 3)
-					o = -3;
-				if (randomNumber == 4)
-					o = -4;
-				if (randomNumber == 5)
-					o = -5;
-				if (randomNumber == 6)
-					o = -6;
-			}
-			if (o + randomNumber == 53)
-			{
-				if (randomNumber == 2)
-					o = -1;
-				if (randomNumber == 3)
-					o = -2;
-				if (randomNumber == 4)
-					o = -3;
-				if (randomNumber == 5)
-					o = -4;
-				if (randomNumber == 6)
-					o = -5;
-			}
-			if (o + randomNumber == 54)
-			{
-				if (randomNumber == 3)
-					o = -1;
-				if (randomNumber == 4)
-					o = -2;
-				if (randomNumber == 5)
-					o = -3;
-				if (randomNumber == 6)
-					o = -4;
-			}
-			if (o + randomNumber == 55)
-			{
-				if (randomNumber == 4)
-					o = -1;
-				if (randomNumber == 5)
-					o = -2;
-				if (randomNumber == 6)
-					o = -3;
-			}
-			if (o + randomNumber == 56)
-			{
-				if (randomNumber == 5)
-					o = -1;
-				if (randomNumber == 6)
-					o = -2;
-			}
-			if (o + randomNumber == 57)
-			{
-				if (randomNumber == 6)
-					o = -1;
-			}
-		}
-		if (o < 25)
-		{
-			if (o + randomNumber > 24 && o + randomNumber < 31)
-			{
-				path[o] = ' ';
-				if (o + randomNumber == 25)
-				{
-					if (randomNumber == 1)
-						o = 61;
-					if (randomNumber == 2)
-						o = 60;
-					if (randomNumber == 3)
-						o = 59;
-					if (randomNumber == 4)
-						o = 58;
-					if (randomNumber == 5)
-						o = 57;
-					if (randomNumber == 6)
-						o = 56;
-				}
-				if (o + randomNumber == 26)
-				{
-					if (randomNumber == 2)
-						o = 61;
-					if (randomNumber == 3)
-						o = 60;
-					if (randomNumber == 4)
-						o = 59;
-					if (randomNumber == 5)
-						o = 58;
-					if (randomNumber == 6)
-						o = 57;
-				}
-				if (o + randomNumber == 27)
-				{
-					if (randomNumber == 3)
-						o = 61;
-					if (randomNumber == 4)
-						o = 60;
-					if (randomNumber == 5)
-						o = 59;
-					if (randomNumber == 6)
-						o = 58;
-				}
-				if (o + randomNumber == 28)
-				{
-					if (randomNumber == 4)
-						o = 61;
-					if (randomNumber == 5)
-						o = 60;
-					if (randomNumber == 6)
-						o = 59;
-				}
-				if (o + randomNumber == 29)
-				{
-					if (randomNumber == 5)
-						o = 61;
-					if (randomNumber == 6)
-						o = 60;
-				}
-				if (o + randomNumber == 17)
-				{
-					if (randomNumber == 6)
-						o = 61;
-				}
-			}
-		}
-		if (p + randomNumber > 51 && p + randomNumber < 58)
-		{
-			path[p] = ' ';
-			if (p + randomNumber == 52)
-			{
-				if (randomNumber == 1)
-					p = -1;
-				if (randomNumber == 2)
-					p = -2;
-				if (randomNumber == 3)
-					p = -3;
-				if (randomNumber == 4)
-					p = -4;
-				if (randomNumber == 5)
-					p = -5;
-				if (randomNumber == 6)
-					p = -6;
-			}
-			if (p + randomNumber == 53)
-			{
-				if (randomNumber == 2)
-					p = -1;
-				if (randomNumber == 3)
-					p = -2;
-				if (randomNumber == 4)
-					p = -3;
-				if (randomNumber == 5)
-					p = -4;
-				if (randomNumber == 6)
-					p = -5;
-			}
-			if (p + randomNumber == 54)
-			{
-				if (randomNumber == 3)
-					p = -1;
-				if (randomNumber == 4)
-					p = -2;
-				if (randomNumber == 5)
-					p = -3;
-				if (randomNumber == 6)
-					p = -4;
-			}
-			if (p + randomNumber == 55)
-			{
-				if (randomNumber == 4)
-					p = -1;
-				if (randomNumber == 5)
-					p = -2;
-				if (randomNumber == 6)
-					p = -3;
-			}
-			if (p + randomNumber == 56)
-			{
-				if (randomNumber == 5)
-					p = -1;
-				if (randomNumber == 6)
-					p = -2;
-			}
-			if (p + randomNumber == 57)
-			{
-				if (randomNumber == 6)
-					p = -1;
-			}
-		}
-		if (p < 25)
-		{
-			if (p + randomNumber > 24 && p + randomNumber < 31)
-			{
-				path[p] = ' ';
-				if (p + randomNumber == 25)
-				{
-					if (randomNumber == 1)
-						p = 61;
-					if (randomNumber == 2)
-						p = 60;
-					if (randomNumber == 3)
-						p = 59;
-					if (randomNumber == 4)
-						p = 58;
-					if (randomNumber == 5)
-						p = 57;
-					if (randomNumber == 6)
-						p = 56;
-				}
-				if (p + randomNumber == 26)
-				{
-					if (randomNumber == 2)
-						p = 61;
-					if (randomNumber == 3)
-						p = 60;
-					if (randomNumber == 4)
-						p = 59;
-					if (randomNumber == 5)
-						p = 58;
-					if (randomNumber == 6)
-						p = 57;
-				}
-				if (p + randomNumber == 27)
-				{
-					if (randomNumber == 3)
-						p = 61;
-					if (randomNumber == 4)
-						p = 60;
-					if (randomNumber == 5)
-						p = 59;
-					if (randomNumber == 6)
-						p = 58;
-				}
-				if (p + randomNumber == 28)
-				{
-					if (randomNumber == 4)
-						p = 61;
-					if (randomNumber == 5)
-						p = 60;
-					if (randomNumber == 6)
-						p = 59;
-				}
-				if (p + randomNumber == 29)
-				{
-					if (randomNumber == 5)
-						p = 61;
-					if (randomNumber == 6)
-						p = 60;
-				}
-				if (p + randomNumber == 17)
-				{
-					if (randomNumber == 6)
-						p = 61;
-				}
-			}
-		}
+		diceFunction(m, 25, 52, 61);
+		diceFunction(n, 25, 52, 61);
+		diceFunction(o, 25, 52, 61);
+		diceFunction(p, 25, 52, 61);
 		if (randomNumber == 6 && countyellow == 0)
 		{
 			Sleep(1000);
@@ -1733,537 +955,11 @@ void fred(int &d, int &e, int &f, int &g, int noOfPlayers)
 {
 	if (winred != 4)
 	{
-		cout << "It's the red turn.";
-		srand(time(0));
-		cout << "\nRoll dice by pressing any alphabet: ";
-		cin >> rollDice;
-		randomNumber = 1 + rand() % 6;
-		cout << "Your dice gave: " << randomNumber << endl;
-		if (d + randomNumber > 51 && d + randomNumber < 58)
-		{
-			path[d] = ' ';
-			if (d + randomNumber == 52)
-			{
-				if (randomNumber == 1)
-					d = -1;
-				if (randomNumber == 2)
-					d = -2;
-				if (randomNumber == 3)
-					d = -3;
-				if (randomNumber == 4)
-					d = -4;
-				if (randomNumber == 5)
-					d = -5;
-				if (randomNumber == 6)
-					d = -6;
-			}
-			if (d + randomNumber == 53)
-			{
-				if (randomNumber == 2)
-					d = -1;
-				if (randomNumber == 3)
-					d = -2;
-				if (randomNumber == 4)
-					d = -3;
-				if (randomNumber == 5)
-					d = -4;
-				if (randomNumber == 6)
-					d = -5;
-			}
-			if (d + randomNumber == 54)
-			{
-				if (randomNumber == 3)
-					d = -1;
-				if (randomNumber == 4)
-					d = -2;
-				if (randomNumber == 5)
-					d = -3;
-				if (randomNumber == 6)
-					d = -4;
-			}
-			if (d + randomNumber == 55)
-			{
-				if (randomNumber == 4)
-					d = -1;
-				if (randomNumber == 5)
-					d = -2;
-				if (randomNumber == 6)
-					d = -3;
-			}
-			if (d + randomNumber == 56)
-			{
-				if (randomNumber == 5)
-					d = -1;
-				if (randomNumber == 6)
-					d = -2;
-			}
-			if (d + randomNumber == 57)
-			{
-				if (randomNumber == 6)
-					d = -1;
-			}
-		}
-		if (d < 12)
-		{
-			if (d + randomNumber > 11 && d + randomNumber < 18)
-			{
-				path[d] = ' ';
-				if (d + randomNumber == 12)
-				{
-					if (randomNumber == 1)
-						d = 56;
-					if (randomNumber == 2)
-						d = 55;
-					if (randomNumber == 3)
-						d = 54;
-					if (randomNumber == 4)
-						d = 53;
-					if (randomNumber == 5)
-						d = 52;
-					if (randomNumber == 6)
-						d = 51;
-				}
-				if (d + randomNumber == 13)
-				{
-					if (randomNumber == 2)
-						d = 56;
-					if (randomNumber == 3)
-						d = 55;
-					if (randomNumber == 4)
-						d = 54;
-					if (randomNumber == 5)
-						d = 53;
-					if (randomNumber == 6)
-						d = 52;
-				}
-				if (d + randomNumber == 14)
-				{
-					if (randomNumber == 3)
-						d = 56;
-					if (randomNumber == 4)
-						d = 55;
-					if (randomNumber == 5)
-						d = 54;
-					if (randomNumber == 6)
-						d = 53;
-				}
-				if (d + randomNumber == 15)
-				{
-					if (randomNumber == 4)
-						d = 56;
-					if (randomNumber == 5)
-						d = 55;
-					if (randomNumber == 6)
-						d = 54;
-				}
-				if (d + randomNumber == 16)
-				{
-					if (randomNumber == 5)
-						d = 56;
-					if (randomNumber == 6)
-						d = 55;
-				}
-				if (d + randomNumber == 17)
-				{
-					if (randomNumber == 6)
-						d = 56;
-				}
-			}
-		}
-		if (e + randomNumber > 51 && e + randomNumber < 58)
-		{
-			path[e] = ' ';
-			if (e + randomNumber == 52)
-			{
-				if (randomNumber == 1)
-					e = -1;
-				if (randomNumber == 2)
-					e = -2;
-				if (randomNumber == 3)
-					e = -3;
-				if (randomNumber == 4)
-					e = -4;
-				if (randomNumber == 5)
-					e = -5;
-				if (randomNumber == 6)
-					e = -6;
-			}
-			if (e + randomNumber == 53)
-			{
-				if (randomNumber == 2)
-					e = -1;
-				if (randomNumber == 3)
-					e = -2;
-				if (randomNumber == 4)
-					e = -3;
-				if (randomNumber == 5)
-					e = -4;
-				if (randomNumber == 6)
-					e = -5;
-			}
-			if (e + randomNumber == 54)
-			{
-				if (randomNumber == 3)
-					e = -1;
-				if (randomNumber == 4)
-					e = -2;
-				if (randomNumber == 5)
-					e = -3;
-				if (randomNumber == 6)
-					e = -4;
-			}
-			if (e + randomNumber == 55)
-			{
-				if (randomNumber == 4)
-					e = -1;
-				if (randomNumber == 5)
-					e = -2;
-				if (randomNumber == 6)
-					e = -3;
-			}
-			if (e + randomNumber == 56)
-			{
-				if (randomNumber == 5)
-					e = -1;
-				if (randomNumber == 6)
-					e = -2;
-			}
-			if (e + randomNumber == 57)
-			{
-				if (randomNumber == 6)
-					e = -1;
-			}
-		}
-		if (e < 12)
-		{
-			if (e + randomNumber > 11 && e + randomNumber < 18)
-			{
-				path[e] = ' ';
-				if (e + randomNumber == 12)
-				{
-					if (randomNumber == 1)
-						e = 56;
-					if (randomNumber == 2)
-						e = 55;
-					if (randomNumber == 3)
-						e = 54;
-					if (randomNumber == 4)
-						e = 53;
-					if (randomNumber == 5)
-						e = 52;
-					if (randomNumber == 6)
-						e = 51;
-				}
-				if (e + randomNumber == 13)
-				{
-					if (randomNumber == 2)
-						e = 56;
-					if (randomNumber == 3)
-						e = 55;
-					if (randomNumber == 4)
-						e = 54;
-					if (randomNumber == 5)
-						e = 53;
-					if (randomNumber == 6)
-						e = 52;
-				}
-				if (e + randomNumber == 14)
-				{
-					if (randomNumber == 3)
-						e = 56;
-					if (randomNumber == 4)
-						e = 55;
-					if (randomNumber == 5)
-						e = 54;
-					if (randomNumber == 6)
-						e = 53;
-				}
-				if (e + randomNumber == 15)
-				{
-					if (randomNumber == 4)
-						e = 56;
-					if (randomNumber == 5)
-						e = 55;
-					if (randomNumber == 6)
-						e = 54;
-				}
-				if (e + randomNumber == 16)
-				{
-					if (randomNumber == 5)
-						e = 56;
-					if (randomNumber == 6)
-						e = 55;
-				}
-				if (e + randomNumber == 17)
-				{
-					if (randomNumber == 6)
-						e = 56;
-				}
-			}
-		}
-		if (f + randomNumber > 51 && f + randomNumber < 58)
-		{
-			path[f] = ' ';
-			if (f + randomNumber == 52)
-			{
-				if (randomNumber == 1)
-					f = -1;
-				if (randomNumber == 2)
-					f = -2;
-				if (randomNumber == 3)
-					f = -3;
-				if (randomNumber == 4)
-					f = -4;
-				if (randomNumber == 5)
-					f = -5;
-				if (randomNumber == 6)
-					f = -6;
-			}
-			if (f + randomNumber == 53)
-			{
-				if (randomNumber == 2)
-					f = -1;
-				if (randomNumber == 3)
-					f = -2;
-				if (randomNumber == 4)
-					f = -3;
-				if (randomNumber == 5)
-					f = -4;
-				if (randomNumber == 6)
-					f = -5;
-			}
-			if (f + randomNumber == 54)
-			{
-				if (randomNumber == 3)
-					f = -1;
-				if (randomNumber == 4)
-					f = -2;
-				if (randomNumber == 5)
-					f = -3;
-				if (randomNumber == 6)
-					f = -4;
-			}
-			if (f + randomNumber == 55)
-			{
-				if (randomNumber == 4)
-					f = -1;
-				if (randomNumber == 5)
-					f = -2;
-				if (randomNumber == 6)
-					f = -3;
-			}
-			if (f + randomNumber == 56)
-			{
-				if (randomNumber == 5)
-					f = -1;
-				if (randomNumber == 6)
-					f = -2;
-			}
-			if (f + randomNumber == 57)
-			{
-				if (randomNumber == 6)
-					f = -1;
-			}
-		}
-		if (f < 12)
-		{
-			if (f + randomNumber > 11 && f + randomNumber < 18)
-			{
-				path[f] = ' ';
-				if (f + randomNumber == 12)
-				{
-					if (randomNumber == 1)
-						f = 56;
-					if (randomNumber == 2)
-						f = 55;
-					if (randomNumber == 3)
-						f = 54;
-					if (randomNumber == 4)
-						f = 53;
-					if (randomNumber == 5)
-						f = 52;
-					if (randomNumber == 6)
-						f = 51;
-				}
-				if (f + randomNumber == 13)
-				{
-					if (randomNumber == 2)
-						f = 56;
-					if (randomNumber == 3)
-						f = 55;
-					if (randomNumber == 4)
-						f = 54;
-					if (randomNumber == 5)
-						f = 53;
-					if (randomNumber == 6)
-						f = 52;
-				}
-				if (f + randomNumber == 14)
-				{
-					if (randomNumber == 3)
-						f = 56;
-					if (randomNumber == 4)
-						f = 55;
-					if (randomNumber == 5)
-						f = 54;
-					if (randomNumber == 6)
-						f = 53;
-				}
-				if (f + randomNumber == 15)
-				{
-					if (randomNumber == 4)
-						f = 56;
-					if (randomNumber == 5)
-						f = 55;
-					if (randomNumber == 6)
-						f = 54;
-				}
-				if (f + randomNumber == 16)
-				{
-					if (randomNumber == 5)
-						f = 56;
-					if (randomNumber == 6)
-						f = 55;
-				}
-				if (f + randomNumber == 17)
-				{
-					if (randomNumber == 6)
-						f = 56;
-				}
-			}
-		}
-		if (g + randomNumber > 51 && g + randomNumber < 58)
-		{
-			path[g] = ' ';
-			if (g + randomNumber == 52)
-			{
-				if (randomNumber == 1)
-					g = -1;
-				if (randomNumber == 2)
-					g = -2;
-				if (randomNumber == 3)
-					g = -3;
-				if (randomNumber == 4)
-					g = -4;
-				if (randomNumber == 5)
-					g = -5;
-				if (randomNumber == 6)
-					g = -6;
-			}
-			if (g + randomNumber == 53)
-			{
-				if (randomNumber == 2)
-					g = -1;
-				if (randomNumber == 3)
-					g = -2;
-				if (randomNumber == 4)
-					g = -3;
-				if (randomNumber == 5)
-					g = -4;
-				if (randomNumber == 6)
-					g = -5;
-			}
-			if (g + randomNumber == 54)
-			{
-				if (randomNumber == 3)
-					g = -1;
-				if (randomNumber == 4)
-					g = -2;
-				if (randomNumber == 5)
-					g = -3;
-				if (randomNumber == 6)
-					g = -4;
-			}
-			if (g + randomNumber == 55)
-			{
-				if (randomNumber == 4)
-					g = -1;
-				if (randomNumber == 5)
-					g = -2;
-				if (randomNumber == 6)
-					g = -3;
-			}
-			if (g + randomNumber == 56)
-			{
-				if (randomNumber == 5)
-					g = -1;
-				if (randomNumber == 6)
-					g = -2;
-			}
-			if (g + randomNumber == 57)
-			{
-
-				if (randomNumber == 6)
-					g = -1;
-			}
-		}
-		if (g < 12)
-		{
-			if (g + randomNumber > 11 && g + randomNumber < 18)
-			{
-				path[g] = ' ';
-				if (g + randomNumber == 12)
-				{
-					if (randomNumber == 1)
-						g = 56;
-					if (randomNumber == 2)
-						g = 55;
-					if (randomNumber == 3)
-						g = 54;
-					if (randomNumber == 4)
-						g = 53;
-					if (randomNumber == 5)
-						g = 52;
-					if (randomNumber == 6)
-						g = 51;
-				}
-				if (g + randomNumber == 13)
-				{
-					if (randomNumber == 2)
-						g = 56;
-					if (randomNumber == 3)
-						g = 55;
-					if (randomNumber == 4)
-						g = 54;
-					if (randomNumber == 5)
-						g = 53;
-					if (randomNumber == 6)
-						g = 52;
-				}
-				if (g + randomNumber == 14)
-				{
-					if (randomNumber == 3)
-						g = 56;
-					if (randomNumber == 4)
-						g = 55;
-					if (randomNumber == 5)
-						g = 54;
-					if (randomNumber == 6)
-						g = 53;
-				}
-				if (g + randomNumber == 15)
-				{
-					if (randomNumber == 4)
-						g = 56;
-					if (randomNumber == 5)
-						g = 55;
-					if (randomNumber == 6)
-						g = 54;
-				}
-				if (g + randomNumber == 16)
-				{
-					if (randomNumber == 5)
-						g = 56;
-					if (randomNumber == 6)
-						g = 55;
-				}
-				if (g + randomNumber == 17)
-				{
-					if (randomNumber == 6)
-						g = 56;
-				}
-			}
-		}
+		rollDiceRandom("red");
+		diceFunction(d, 12, 52, 56);
+		diceFunction(e, 12, 52, 56);
+		diceFunction(f, 12, 52, 56);
+		diceFunction(g, 12, 52, 56);
 		if (randomNumber != 6 && countred == 0)
 		{
 			cout << "You cannot move. ";
@@ -2498,268 +1194,11 @@ void fblue(int &i, int &j, int &k, int &l, int noOfPlayers)
 {
 	if (winblue != 4)
 	{
-		cout << "It's the blue turn.";
-		srand(time(0));
-		cout << "\nRoll dice by pressing any alphabet: ";
-		cin >> rollDice;
-		randomNumber = 1 + rand() % 6;
-		cout << "Your dice gave: " << randomNumber << endl;
-		if (i + randomNumber > 50 && i + randomNumber < 57)
-		{
-			path[i] = ' ';
-			if (i + randomNumber == 51)
-			{
-				if (randomNumber == 1)
-					i = 51;
-				if (randomNumber == 2)
-					i = 50;
-				if (randomNumber == 3)
-					i = 49;
-				if (randomNumber == 4)
-					i = 48;
-				if (randomNumber == 5)
-					i = 47;
-				if (randomNumber == 6)
-					i = 46;
-			}
-			if (i + randomNumber == 52)
-			{
-				if (randomNumber == 2)
-					i = 51;
-				if (randomNumber == 3)
-					i = 50;
-				if (randomNumber == 4)
-					i = 49;
-				if (randomNumber == 5)
-					i = 48;
-				if (randomNumber == 6)
-					i = 47;
-			}
-			if (i + randomNumber == 53)
-			{
-				if (randomNumber == 3)
-					i = 51;
-				if (randomNumber == 4)
-					i = 50;
-				if (randomNumber == 5)
-					i = 49;
-				if (randomNumber == 6)
-					i = 48;
-			}
-			if (i + randomNumber == 54)
-			{
-				if (randomNumber == 4)
-					i = 51;
-				if (randomNumber == 5)
-					i = 50;
-				if (randomNumber == 6)
-					i = 49;
-			}
-			if (i + randomNumber == 55)
-			{
-				if (randomNumber == 5)
-					i = 51;
-				if (randomNumber == 6)
-					i = 50;
-			}
-			if (i + randomNumber == 56)
-			{
-				if (randomNumber == 6)
-					i = 51;
-			}
-		}
-		if (j + randomNumber > 50 && j + randomNumber < 57)
-		{
-			path[j] = ' ';
-			if (j + randomNumber == 51)
-			{
-				if (randomNumber == 1)
-					j = 51;
-				if (randomNumber == 2)
-					j = 50;
-				if (randomNumber == 3)
-					j = 49;
-				if (randomNumber == 4)
-					j = 48;
-				if (randomNumber == 5)
-					j = 47;
-				if (randomNumber == 6)
-					j = 46;
-			}
-			if (j + randomNumber == 52)
-			{
-				if (randomNumber == 2)
-					j = 51;
-				if (randomNumber == 3)
-					j = 50;
-				if (randomNumber == 4)
-					j = 49;
-				if (randomNumber == 5)
-					j = 48;
-				if (randomNumber == 6)
-					j = 47;
-			}
-			if (j + randomNumber == 53)
-			{
-				if (randomNumber == 3)
-					j = 51;
-				if (randomNumber == 4)
-					j = 50;
-				if (randomNumber == 5)
-					j = 49;
-				if (randomNumber == 6)
-					j = 48;
-			}
-			if (j + randomNumber == 54)
-			{
-				if (randomNumber == 4)
-					j = 51;
-				if (randomNumber == 5)
-					j = 50;
-				if (randomNumber == 6)
-					j = 49;
-			}
-			if (j + randomNumber == 55)
-			{
-				if (randomNumber == 5)
-					j = 51;
-				if (randomNumber == 6)
-					j = 50;
-			}
-			if (j + randomNumber == 56)
-			{
-				if (randomNumber == 6)
-					j = 51;
-			}
-		}
-		if (k + randomNumber > 50 && k + randomNumber < 57)
-		{
-			path[k] = ' ';
-			if (k + randomNumber == 51)
-			{
-				if (randomNumber == 1)
-					k = 51;
-				if (randomNumber == 2)
-					k = 50;
-				if (randomNumber == 3)
-					k = 49;
-				if (randomNumber == 4)
-					k = 48;
-				if (randomNumber == 5)
-					k = 47;
-				if (randomNumber == 6)
-					k = 46;
-			}
-			if (k + randomNumber == 52)
-			{
-				if (randomNumber == 2)
-					k = 51;
-				if (randomNumber == 3)
-					k = 50;
-				if (randomNumber == 4)
-					k = 49;
-				if (randomNumber == 5)
-					k = 48;
-				if (randomNumber == 6)
-					k = 47;
-			}
-			if (k + randomNumber == 53)
-			{
-				if (randomNumber == 3)
-					k = 51;
-				if (randomNumber == 4)
-					k = 50;
-				if (randomNumber == 5)
-					k = 49;
-				if (randomNumber == 6)
-					k = 48;
-			}
-			if (k + randomNumber == 54)
-			{
-				if (randomNumber == 4)
-					k = 51;
-				if (randomNumber == 5)
-					k = 50;
-				if (randomNumber == 6)
-					k = 49;
-			}
-			if (k + randomNumber == 55)
-			{
-				if (randomNumber == 5)
-					k = 51;
-				if (randomNumber == 6)
-					k = 50;
-			}
-			if (k + randomNumber == 56)
-			{
-				if (randomNumber == 6)
-					k = 51;
-			}
-		}
-		if (l + randomNumber > 50 && l + randomNumber < 57)
-		{
-			path[l] = ' ';
-			if (l + randomNumber == 51)
-			{
-				if (randomNumber == 1)
-					l = 51;
-				if (randomNumber == 2)
-					l = 50;
-				if (randomNumber == 3)
-					l = 49;
-				if (randomNumber == 4)
-					l = 48;
-				if (randomNumber == 5)
-					l = 47;
-				if (randomNumber == 6)
-					l = 46;
-			}
-			if (l + randomNumber == 52)
-			{
-				if (randomNumber == 2)
-					l = 51;
-				if (randomNumber == 3)
-					l = 50;
-				if (randomNumber == 4)
-					l = 49;
-				if (randomNumber == 5)
-					l = 48;
-				if (randomNumber == 6)
-					l = 47;
-			}
-			if (l + randomNumber == 53)
-			{
-				if (randomNumber == 3)
-					l = 51;
-				if (randomNumber == 4)
-					l = 50;
-				if (randomNumber == 5)
-					l = 49;
-				if (randomNumber == 6)
-					l = 48;
-			}
-			if (l + randomNumber == 54)
-			{
-				if (randomNumber == 4)
-					l = 51;
-				if (randomNumber == 5)
-					l = 50;
-				if (randomNumber == 6)
-					l = 49;
-			}
-			if (l + randomNumber == 55)
-			{
-				if (randomNumber == 5)
-					l = 51;
-				if (randomNumber == 6)
-					l = 50;
-			}
-			if (l + randomNumber == 56)
-			{
-				if (randomNumber == 6)
-					l = 51;
-			}
-		}
+		rollDiceRandom("blue");
+		diceFunction(q, 0, 52, 51);
+		diceFunction(r, 0, 52, 51);
+		diceFunction(s, 0, 52, 51);
+		diceFunction(t, 0, 52, 51);
 		if (randomNumber != 6 && countblue == 0)
 		{
 			cout << "You cannot move. ";
