@@ -20,6 +20,7 @@ void colorTransparentGraphics();
 void rollDiceRandom(string);
 void diceFunction(int &, int, int, int);
 void rollDiceTurn(int &, char[], int &);
+void reloadGraphics();
 
 char blue[12][12], red[12][12], yellow[12][12], green[12][12];
 char path[72], gotiblue[4] = {'a', 'b', 'c', 'd'}, gotired[4] = {'e', 'f', 'g', 'h'}, gotiyellow[4] = {'i', 'j', 'k', 'l'}, gotigreen[4] = {'m', 'n', 'o', 'p'}, inputText, rollDice;
@@ -216,6 +217,12 @@ void diceFunction(int &m, int no, int no2, int no3)
 			}
 		}
 	}
+}
+void reloadGraphics()
+{
+	Sleep(1000);
+	system("cls");
+	graphics();
 }
 void graphics()
 {
@@ -561,15 +568,11 @@ void fgreen(int &q, int &r, int &s, int &t, int noOfPlayers)
 		if (randomNumber != 6 && countgreen == 0)
 		{
 			cout << "You cannot move. ";
-			Sleep(1000);
-			system("cls");
-			graphics();
+			reloadGraphics();
 			fblue(i, j, k, l, noOfPlayers);
 		}
 		if (randomNumber == 6 && countgreen == 0)
 		{
-			Sleep(1000);
-			system("cls");
 			path[q] = gotigreen[countgreen];
 			if (gotigreen[countgreen] == 'm')
 				green[5][5] = ' ';
@@ -580,7 +583,7 @@ void fgreen(int &q, int &r, int &s, int &t, int noOfPlayers)
 			if (gotigreen[countgreen] == 'p')
 				green[6][6] = ' ';
 			countgreen++;
-			graphics();
+			reloadGraphics();
 			fgreen(q, r, s, t, noOfPlayers);
 		}
 		if (randomNumber == 6 && countgreen != 0 && countgreen < 4)
@@ -602,9 +605,7 @@ void fgreen(int &q, int &r, int &s, int &t, int noOfPlayers)
 						wingreen++;
 					}
 				}
-				Sleep(1000);
-				system("cls");
-				graphics();
+				reloadGraphics();
 				fgreen(q, r, s, t, noOfPlayers);
 			}
 			else if (rollDice == 'o')
@@ -624,9 +625,7 @@ void fgreen(int &q, int &r, int &s, int &t, int noOfPlayers)
 				if (gotigreen[countgreen] == 'p')
 					green[6][6] = ' ';
 				countgreen++;
-				Sleep(1000);
-				system("cls");
-				graphics();
+				reloadGraphics();
 				fgreen(q, r, s, t, noOfPlayers);
 			}
 		}
@@ -657,9 +656,7 @@ void fgreen(int &q, int &r, int &s, int &t, int noOfPlayers)
 				else
 					winner4 = "winner4 green";
 			}
-			Sleep(1000);
-			system("cls");
-			graphics();
+			reloadGraphics();
 			if (randomNumber == 6)
 				fgreen(q, r, s, t, noOfPlayers);
 			if (randomNumber < 6)
@@ -675,9 +672,7 @@ void fyellow(int &m, int &n, int &o, int &p, int noOfPlayers)
 		if (randomNumber != 6 && countyellow == 0)
 		{
 			cout << "You cannot move. ";
-			Sleep(1000);
-			system("cls");
-			graphics();
+			reloadGraphics();
 			if (noOfPlayers == 3)
 				fblue(i, j, k, l, noOfPlayers);
 			else
@@ -689,8 +684,6 @@ void fyellow(int &m, int &n, int &o, int &p, int noOfPlayers)
 		diceFunction(p, 25, 52, 61);
 		if (randomNumber == 6 && countyellow == 0)
 		{
-			Sleep(1000);
-			system("cls");
 			path[m] = gotiyellow[countyellow];
 			if (gotiyellow[countyellow] == 'i')
 				yellow[5][5] = ' ';
@@ -701,7 +694,7 @@ void fyellow(int &m, int &n, int &o, int &p, int noOfPlayers)
 			if (gotiyellow[countyellow] == 'l')
 				yellow[6][6] = ' ';
 			countyellow++;
-			graphics();
+			reloadGraphics();
 			fyellow(m, n, o, p, noOfPlayers);
 		}
 		if (randomNumber == 6 && countyellow != 0 && countyellow < 4)
@@ -735,9 +728,7 @@ void fyellow(int &m, int &n, int &o, int &p, int noOfPlayers)
 					else
 						winner4 = "winner4 yellow";
 				}
-				Sleep(1000);
-				system("cls");
-				graphics();
+				reloadGraphics();
 				fyellow(m, n, o, p, noOfPlayers);
 			}
 			else if (rollDice == 'o')
@@ -757,9 +748,7 @@ void fyellow(int &m, int &n, int &o, int &p, int noOfPlayers)
 				if (gotiyellow[countyellow] == 'l')
 					yellow[6][6] = ' ';
 				countyellow++;
-				Sleep(1000);
-				system("cls");
-				graphics();
+				reloadGraphics();
 				fyellow(m, n, o, p, noOfPlayers);
 			}
 		}
@@ -790,9 +779,7 @@ void fyellow(int &m, int &n, int &o, int &p, int noOfPlayers)
 				else
 					winner4 = "winner4 yellow";
 			}
-			Sleep(1000);
-			system("cls");
-			graphics();
+			reloadGraphics();
 			if (randomNumber == 6)
 				fyellow(m, n, o, p, noOfPlayers);
 			if (noOfPlayers == 3 && randomNumber < 6)
@@ -814,9 +801,7 @@ void fred(int &d, int &e, int &f, int &g, int noOfPlayers)
 		if (randomNumber != 6 && countred == 0)
 		{
 			cout << "You cannot move. ";
-			Sleep(1000);
-			system("cls");
-			graphics();
+			reloadGraphics();
 			if (noOfPlayers == 2)
 				fblue(i, j, k, l, noOfPlayers);
 			else
@@ -824,8 +809,6 @@ void fred(int &d, int &e, int &f, int &g, int noOfPlayers)
 		}
 		if (randomNumber == 6 && countred == 0)
 		{
-			Sleep(1000);
-			system("cls");
 			path[d] = gotired[countred];
 			if (gotired[countred] == 'e')
 				red[5][5] = ' ';
@@ -836,7 +819,7 @@ void fred(int &d, int &e, int &f, int &g, int noOfPlayers)
 			if (gotired[countred] == 'h')
 				red[6][6] = ' ';
 			countred++;
-			graphics();
+			reloadGraphics();
 			fred(d, e, f, g, noOfPlayers);
 		}
 		if (randomNumber == 6 && countred != 0 && countred < 4)
@@ -870,9 +853,7 @@ void fred(int &d, int &e, int &f, int &g, int noOfPlayers)
 					else
 						winner4 = "winner4 red";
 				}
-				Sleep(1000);
-				system("cls");
-				graphics();
+				reloadGraphics();
 				fred(d, e, f, g, noOfPlayers);
 			}
 			else if (rollDice == 'o')
@@ -892,9 +873,7 @@ void fred(int &d, int &e, int &f, int &g, int noOfPlayers)
 				if (gotired[countred] == 'h')
 					red[6][6] = ' ';
 				countred++;
-				Sleep(1000);
-				system("cls");
-				graphics();
+				reloadGraphics();
 				fred(d, e, f, g, noOfPlayers);
 			}
 		}
@@ -925,9 +904,7 @@ void fred(int &d, int &e, int &f, int &g, int noOfPlayers)
 				else
 					winner4 = "winner4 red";
 			}
-			Sleep(1000);
-			system("cls");
-			graphics();
+			reloadGraphics();
 			if (randomNumber == 6)
 				fred(d, e, f, g, noOfPlayers);
 			if (noOfPlayers == 2)
@@ -949,15 +926,11 @@ void fblue(int &i, int &j, int &k, int &l, int noOfPlayers)
 		if (randomNumber != 6 && countblue == 0)
 		{
 			cout << "You cannot move. ";
-			Sleep(1000);
-			system("cls");
-			graphics();
+			reloadGraphics();
 			fred(d, e, f, g, noOfPlayers);
 		}
 		if (randomNumber == 6 && countblue == 0)
 		{
-			Sleep(1000);
-			system("cls");
 			path[i] = gotiblue[countblue];
 			if (gotiblue[countblue] == 'a')
 				blue[5][5] = ' ';
@@ -968,7 +941,7 @@ void fblue(int &i, int &j, int &k, int &l, int noOfPlayers)
 			if (gotiblue[countblue] == 'd')
 				blue[6][6] = ' ';
 			countblue++;
-			graphics();
+			reloadGraphics();
 			fblue(i, j, k, l, noOfPlayers);
 		}
 		if (randomNumber == 6 && countblue != 0 && countblue < 4)
@@ -1002,9 +975,7 @@ void fblue(int &i, int &j, int &k, int &l, int noOfPlayers)
 					else
 						winner4 = "winner4 blue";
 				}
-				Sleep(1000);
-				system("cls");
-				graphics();
+				reloadGraphics();
 				fblue(i, j, k, l, noOfPlayers);
 			}
 			else if (rollDice == 'o')
@@ -1024,9 +995,7 @@ void fblue(int &i, int &j, int &k, int &l, int noOfPlayers)
 				if (gotiblue[countblue] == 'd')
 					blue[6][6] = ' ';
 				countblue++;
-				Sleep(1000);
-				system("cls");
-				graphics();
+				reloadGraphics();
 				fblue(i, j, k, l, noOfPlayers);
 			}
 		}
@@ -1057,9 +1026,7 @@ void fblue(int &i, int &j, int &k, int &l, int noOfPlayers)
 				else
 					winner4 = "winner4 blue";
 			}
-			Sleep(1000);
-			system("cls");
-			graphics();
+			reloadGraphics();
 			if (randomNumber == 6)
 				fblue(i, j, k, l, noOfPlayers);
 			else
