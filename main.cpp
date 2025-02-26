@@ -19,10 +19,11 @@ void colorGreenGraphics();
 void colorTransparentGraphics();
 void rollDiceRandom(string);
 void diceFunction(int &, int, int, int);
+void rollDiceTurn(int &, char[], int &);
 
 char blue[12][12], red[12][12], yellow[12][12], green[12][12];
 char path[72], gotiblue[4] = {'a', 'b', 'c', 'd'}, gotired[4] = {'e', 'f', 'g', 'h'}, gotiyellow[4] = {'i', 'j', 'k', 'l'}, gotigreen[4] = {'m', 'n', 'o', 'p'}, inputText, rollDice;
-int a,b,i = 0, j = 0, k = 0, l = 0, d = 13, e = 13, f = 13, g = 13, m = 26, n = 26, o = 26, p = 26, q = 39, r = 39, s = 39, t = 39, countblue = 0, countred = 0, countgreen = 0, countyellow = 0, winblue = 0, winred = 0, wingreen = 0, winyellow = 0, winner = 0, randomNumber, gotiNumber, noOfPlayers;
+int a, b, i = 0, j = 0, k = 0, l = 0, d = 13, e = 13, f = 13, g = 13, m = 26, n = 26, o = 26, p = 26, q = 39, r = 39, s = 39, t = 39, countblue = 0, countred = 0, countgreen = 0, countyellow = 0, winblue = 0, winred = 0, wingreen = 0, winyellow = 0, winner = 0, randomNumber, gotiNumber, noOfPlayers;
 string winner1, winner2, winner3, winner4;
 int main()
 {
@@ -38,7 +39,7 @@ int main()
 			green[a][b] = ' ';
 		}
 	}
-	
+
 	blue[5][5] = gotiblue[0], blue[5][6] = gotiblue[1], blue[6][5] = gotiblue[2], blue[6][6] = gotiblue[3];
 	red[5][5] = gotired[0], red[5][6] = gotired[1], red[6][5] = gotired[2], red[6][6] = gotired[3];
 	green[5][5] = gotigreen[0], green[5][6] = gotigreen[1], green[6][5] = gotigreen[2], green[6][6] = gotigreen[3];
@@ -82,8 +83,9 @@ void colorTransparentGraphics()
 {
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15 | FOREGROUND_INTENSITY);
 }
-void diceFunction(int &m, int no, int no2, int no3){
-	if (m + randomNumber > no2-1 && m + randomNumber < no2+6)
+void diceFunction(int &m, int no, int no2, int no3)
+{
+	if (m + randomNumber > no2 - 1 && m + randomNumber < no2 + 6)
 	{
 		path[m] = ' ';
 		if (m + randomNumber == no2)
@@ -101,7 +103,7 @@ void diceFunction(int &m, int no, int no2, int no3){
 			if (randomNumber == 6)
 				m = -6;
 		}
-		if (m + randomNumber == no2+1)
+		if (m + randomNumber == no2 + 1)
 		{
 			if (randomNumber == 2)
 				m = -1;
@@ -114,7 +116,7 @@ void diceFunction(int &m, int no, int no2, int no3){
 			if (randomNumber == 6)
 				m = -5;
 		}
-		if (m + randomNumber == no2+2)
+		if (m + randomNumber == no2 + 2)
 		{
 			if (randomNumber == 3)
 				m = -1;
@@ -125,7 +127,7 @@ void diceFunction(int &m, int no, int no2, int no3){
 			if (randomNumber == 6)
 				m = -4;
 		}
-		if (m + randomNumber == no2+3)
+		if (m + randomNumber == no2 + 3)
 		{
 			if (randomNumber == 4)
 				m = -1;
@@ -134,14 +136,14 @@ void diceFunction(int &m, int no, int no2, int no3){
 			if (randomNumber == 6)
 				m = -3;
 		}
-		if (m + randomNumber == no2+4)
+		if (m + randomNumber == no2 + 4)
 		{
 			if (randomNumber == 5)
 				m = -1;
 			if (randomNumber == 6)
 				m = -2;
 		}
-		if (m + randomNumber == no2+5)
+		if (m + randomNumber == no2 + 5)
 		{
 			if (randomNumber == 6)
 				m = -1;
@@ -149,7 +151,7 @@ void diceFunction(int &m, int no, int no2, int no3){
 	}
 	if (m < no)
 	{
-		if (m + randomNumber > no-1 && m + randomNumber < no+6)
+		if (m + randomNumber > no - 1 && m + randomNumber < no + 6)
 		{
 			path[m] = ' ';
 			if (m + randomNumber == no)
@@ -157,57 +159,57 @@ void diceFunction(int &m, int no, int no2, int no3){
 				if (randomNumber == 1)
 					m = no3;
 				if (randomNumber == 2)
-					m = no3-1;
+					m = no3 - 1;
 				if (randomNumber == 3)
-					m = no3-2;
+					m = no3 - 2;
 				if (randomNumber == 4)
-					m = no3-3;
+					m = no3 - 3;
 				if (randomNumber == 5)
-					m = no3-4;
+					m = no3 - 4;
 				if (randomNumber == 6)
-					m = no3-5;
+					m = no3 - 5;
 			}
-			if (m + randomNumber == no+1)
+			if (m + randomNumber == no + 1)
 			{
 				if (randomNumber == 2)
 					m = no3;
 				if (randomNumber == 3)
-					m = no3-1;
+					m = no3 - 1;
 				if (randomNumber == 4)
-					m = no3-2;
+					m = no3 - 2;
 				if (randomNumber == 5)
-					m = no3-3;
+					m = no3 - 3;
 				if (randomNumber == 6)
-					m = no3-4;
+					m = no3 - 4;
 			}
-			if (m + randomNumber == no+2)
+			if (m + randomNumber == no + 2)
 			{
 				if (randomNumber == 3)
 					m = no3;
 				if (randomNumber == 4)
-					m = no3-1;
+					m = no3 - 1;
 				if (randomNumber == 5)
-					m = no3-2;
+					m = no3 - 2;
 				if (randomNumber == 6)
-					m = no3-3;
+					m = no3 - 3;
 			}
-			if (m + randomNumber == no+3)
+			if (m + randomNumber == no + 3)
 			{
 				if (randomNumber == 4)
 					m = no3;
 				if (randomNumber == 5)
-					m = no3-1;
+					m = no3 - 1;
 				if (randomNumber == 6)
-					m = no3-2;
+					m = no3 - 2;
 			}
-			if (m + randomNumber == no+4)
+			if (m + randomNumber == no + 4)
 			{
 				if (randomNumber == 5)
 					m = no3;
 				if (randomNumber == 6)
-					m = no3-1;
+					m = no3 - 1;
 			}
-			if (m + randomNumber == no+5)
+			if (m + randomNumber == no + 5)
 			{
 				if (randomNumber == 6)
 					m = no3;
@@ -482,13 +484,70 @@ void graphics()
 			}
 		}
 }
-void rollDiceRandom(string turn){
+void rollDiceRandom(string turn)
+{
 	cout << "It's the " << turn << " turn";
 	srand(time(0));
 	cout << "\nRoll dice by pressing any alphabet: ";
 	cin >> rollDice;
 	randomNumber = 1 + rand() % 6;
 	cout << "Your dice gave: " << randomNumber << endl;
+}
+void rollDiceTurn(int &countColor, char gotiColor[], int &winColor)
+{
+	if (countColor > 1)
+	{
+		cout << "Which goti you want to move: ";
+		cin >> gotiNumber;
+		if (gotiNumber == 1 && q + randomNumber < 73)
+		{
+			q += randomNumber;
+			path[q] = gotiColor[0];
+			path[q - randomNumber] = ' ';
+			if (q == 72)
+			{
+				cout << "Your goti won.";
+				path[q] = ' ';
+				winColor++;
+			}
+		}
+		else if (gotiNumber == 2 && r + randomNumber < 73)
+		{
+			r += randomNumber;
+			path[r] = gotiColor[1];
+			path[r - randomNumber] = ' ';
+			if (r == 72)
+			{
+				cout << "Your goti won.";
+				path[r] = ' ';
+				winColor++;
+			}
+		}
+		else if (gotiNumber == 3 && s + randomNumber < 73)
+		{
+			s += randomNumber;
+			path[s] = gotiColor[2];
+			path[s - randomNumber] = ' ';
+			if (s == 72)
+			{
+				cout << "Your goti won.";
+				path[s] = ' ';
+				winColor++;
+			}
+		}
+		else if (gotiNumber == 4 && t + randomNumber < 73)
+		{
+			t += randomNumber;
+			path[t] = gotiColor[3];
+			path[t - randomNumber] = ' ';
+			if (t == 72)
+			{
+				cout << "Your goti won.";
+				path[t] = ' ';
+				winColor++;
+			}
+		}
+	}
 }
 void fgreen(int &q, int &r, int &s, int &t, int noOfPlayers)
 {
@@ -530,59 +589,7 @@ void fgreen(int &q, int &r, int &s, int &t, int noOfPlayers)
 			cin >> rollDice;
 			if (rollDice == 'y')
 			{
-				if (countgreen > 1)
-				{
-					cout << "Which goti you want to move: ";
-					cin >> gotiNumber;
-					if (gotiNumber == 1 && q + randomNumber < 73)
-					{
-						q += randomNumber;
-						path[q] = gotigreen[0];
-						path[q - randomNumber] = ' ';
-						if (q == 72)
-						{
-							cout << "Your goti won.";
-							path[q] = ' ';
-							wingreen++;
-						}
-					}
-					else if (gotiNumber == 2 && r + randomNumber < 73)
-					{
-						r += randomNumber;
-						path[r] = gotigreen[1];
-						path[r - randomNumber] = ' ';
-						if (r == 72)
-						{
-							cout << "Your goti won.";
-							path[r] = ' ';
-							wingreen++;
-						}
-					}
-					else if (gotiNumber == 3 && s + randomNumber < 73)
-					{
-						s += randomNumber;
-						path[s] = gotigreen[2];
-						path[s - randomNumber] = ' ';
-						if (s == 72)
-						{
-							cout << "Your goti won.";
-							path[s] = ' ';
-							wingreen++;
-						}
-					}
-					else if (gotiNumber == 4 && t + randomNumber < 73)
-					{
-						t += randomNumber;
-						path[t] = gotigreen[3];
-						path[t - randomNumber] = ' ';
-						if (t == 72)
-						{
-							cout << "Your goti won.";
-							path[t] = ' ';
-							wingreen++;
-						}
-					}
-				}
+				rollDiceTurn(countgreen, gotigreen, wingreen);
 				if (countgreen == 1 && q + randomNumber < 73)
 				{
 					q += randomNumber;
@@ -625,59 +632,7 @@ void fgreen(int &q, int &r, int &s, int &t, int noOfPlayers)
 		}
 		if (randomNumber < 6 && countgreen != 0 || randomNumber == 6 && countgreen == 4)
 		{
-			if (countgreen > 1)
-			{
-				cout << "Which goti you want to move: ";
-				cin >> gotiNumber;
-				if (gotiNumber == 1 && q + randomNumber < 73)
-				{
-					q += randomNumber;
-					path[q] = gotigreen[0];
-					path[q - randomNumber] = ' ';
-					if (q == 72)
-					{
-						cout << "Your goti won.";
-						path[q] = ' ';
-						wingreen++;
-					}
-				}
-				else if (gotiNumber == 2 && r + randomNumber < 73)
-				{
-					r += randomNumber;
-					path[r] = gotigreen[1];
-					path[r - randomNumber] = ' ';
-					if (r == 72)
-					{
-						cout << "Your goti won.";
-						path[r] = ' ';
-						wingreen++;
-					}
-				}
-				else if (gotiNumber == 3 && s + randomNumber < 73)
-				{
-					s += randomNumber;
-					path[s] = gotigreen[2];
-					path[s - randomNumber] = ' ';
-					if (s == 72)
-					{
-						cout << "Your goti won.";
-						path[s] = ' ';
-						wingreen++;
-					}
-				}
-				else if (gotiNumber == 4 && t + randomNumber < 73)
-				{
-					t += randomNumber;
-					path[t] = gotigreen[3];
-					path[t - randomNumber] = ' ';
-					if (t == 72)
-					{
-						cout << "Your goti won.";
-						path[t] = ' ';
-						wingreen++;
-					}
-				}
-			}
+			rollDiceTurn(countgreen, gotigreen, wingreen);
 			if (countgreen == 1 && q + randomNumber < 73)
 			{
 				q += randomNumber;
@@ -755,59 +710,7 @@ void fyellow(int &m, int &n, int &o, int &p, int noOfPlayers)
 			cin >> rollDice;
 			if (rollDice == 'y')
 			{
-				if (countyellow > 1)
-				{
-					cout << "Which goti you want to move: ";
-					cin >> gotiNumber;
-					if (gotiNumber == 1 && m + randomNumber < 68)
-					{
-						m += randomNumber;
-						path[m] = gotiyellow[0];
-						path[m - randomNumber] = ' ';
-						if (m == 67)
-						{
-							cout << "Your goti won.";
-							path[m] = ' ';
-							winyellow++;
-						}
-					}
-					else if (gotiNumber == 2 && n + randomNumber < 68)
-					{
-						n += randomNumber;
-						path[n] = gotiyellow[1];
-						path[n - randomNumber] = ' ';
-						if (n == 67)
-						{
-							cout << "Your goti won.";
-							path[n] = ' ';
-							winyellow++;
-						}
-					}
-					else if (gotiNumber == 3 && o + randomNumber < 68)
-					{
-						o += randomNumber;
-						path[o] = gotiyellow[2];
-						path[o - randomNumber] = ' ';
-						if (o == 67)
-						{
-							cout << "Your goti won.";
-							path[o] = ' ';
-							winyellow++;
-						}
-					}
-					else if (gotiNumber == 4 && p + randomNumber < 68)
-					{
-						p += randomNumber;
-						path[p] = gotiyellow[3];
-						path[p - randomNumber] = ' ';
-						if (p == 67)
-						{
-							cout << "Your goti won.";
-							path[p] = ' ';
-							winyellow++;
-						}
-					}
-				}
+				rollDiceTurn(countyellow, gotiyellow, winyellow);
 				if (countyellow == 1 && m + randomNumber < 68)
 				{
 					m += randomNumber;
@@ -862,59 +765,7 @@ void fyellow(int &m, int &n, int &o, int &p, int noOfPlayers)
 		}
 		if (randomNumber < 6 && countyellow != 0 || randomNumber == 6 && countyellow == 4)
 		{
-			if (countyellow > 1)
-			{
-				cout << "Which goti you want to move: ";
-				cin >> gotiNumber;
-				if (gotiNumber == 1 && m + randomNumber < 68)
-				{
-					m += randomNumber;
-					path[m] = gotiyellow[0];
-					path[m - randomNumber] = ' ';
-					if (m == 67)
-					{
-						cout << "Your goti won.";
-						path[m] = ' ';
-						winyellow++;
-					}
-				}
-				else if (gotiNumber == 2 && n + randomNumber < 68)
-				{
-					n += randomNumber;
-					path[n] = gotiyellow[1];
-					path[n - randomNumber] = ' ';
-					if (n == 67)
-					{
-						cout << "Your goti won.";
-						path[n] = ' ';
-						winyellow++;
-					}
-				}
-				else if (gotiNumber == 3 && o + randomNumber < 68)
-				{
-					o += randomNumber;
-					path[o] = gotiyellow[2];
-					path[o - randomNumber] = ' ';
-					if (o == 67)
-					{
-						cout << "Your goti won.";
-						path[o] = ' ';
-						winyellow++;
-					}
-				}
-				else if (gotiNumber == 4 && p + randomNumber < 68)
-				{
-					p += randomNumber;
-					path[p] = gotiyellow[3];
-					path[p - randomNumber] = ' ';
-					if (p == 67)
-					{
-						cout << "Your goti won.";
-						path[p] = ' ';
-						winyellow++;
-					}
-				}
-			}
+			rollDiceTurn(countyellow, gotiyellow, winyellow);
 			if (countyellow == 1 && m + randomNumber < 68)
 			{
 				m += randomNumber;
@@ -994,59 +845,7 @@ void fred(int &d, int &e, int &f, int &g, int noOfPlayers)
 			cin >> rollDice;
 			if (rollDice == 'y')
 			{
-				if (countred > 1)
-				{
-					cout << "Which goti you want to move: ";
-					cin >> gotiNumber;
-					if (gotiNumber == 1 && d + randomNumber < 63)
-					{
-						d += randomNumber;
-						path[d] = gotired[0];
-						path[d - randomNumber] = ' ';
-						if (d == 62)
-						{
-							cout << "Your goti won.";
-							path[d] = ' ';
-							winred++;
-						}
-					}
-					else if (gotiNumber == 2 && e + randomNumber < 63)
-					{
-						e += randomNumber;
-						path[e] = gotired[1];
-						path[e - randomNumber] = ' ';
-						if (e == 62)
-						{
-							cout << "Your goti won.";
-							path[e] = ' ';
-							winred++;
-						}
-					}
-					else if (gotiNumber == 3 && f + randomNumber < 63)
-					{
-						f += randomNumber;
-						path[f] = gotired[2];
-						path[f - randomNumber] = ' ';
-						if (f == 62)
-						{
-							cout << "Your goti won.";
-							path[f] = ' ';
-							winred++;
-						}
-					}
-					else if (gotiNumber == 4 && g + randomNumber < 63)
-					{
-						g += randomNumber;
-						path[g] = gotired[3];
-						path[g - randomNumber] = ' ';
-						if (g == 62)
-						{
-							cout << "Your goti won.";
-							path[g] = ' ';
-							winred++;
-						}
-					}
-				}
+				rollDiceTurn(countred, gotired, winred);
 				if (countred == 1 && d + randomNumber < 63)
 				{
 					d += randomNumber;
@@ -1101,59 +900,7 @@ void fred(int &d, int &e, int &f, int &g, int noOfPlayers)
 		}
 		if (randomNumber < 6 && countred != 0 || randomNumber == 6 && countred == 4)
 		{
-			if (countred > 1)
-			{
-				cout << "Which goti you want to move: ";
-				cin >> gotiNumber;
-				if (gotiNumber == 1 && d + randomNumber < 63)
-				{
-					d += randomNumber;
-					path[d] = gotired[0];
-					path[d - randomNumber] = ' ';
-					if (d == 62)
-					{
-						cout << "Your goti won.";
-						path[d] = ' ';
-						winred++;
-					}
-				}
-				else if (gotiNumber == 2 && e + randomNumber < 63)
-				{
-					e += randomNumber;
-					path[e] = gotired[1];
-					path[e - randomNumber] = ' ';
-					if (e == 62)
-					{
-						cout << "Your goti won.";
-						path[e] = ' ';
-						winred++;
-					}
-				}
-				else if (gotiNumber == 3 && f + randomNumber < 63)
-				{
-					f += randomNumber;
-					path[f] = gotired[2];
-					path[f - randomNumber] = ' ';
-					if (f == 62)
-					{
-						cout << "Your goti won.";
-						path[f] = ' ';
-						winred++;
-					}
-				}
-				else if (gotiNumber == 4 && g + randomNumber < 63)
-				{
-					g += randomNumber;
-					path[g] = gotired[3];
-					path[g - randomNumber] = ' ';
-					if (g == 62)
-					{
-						cout << "Your goti won.";
-						path[g] = ' ';
-						winred++;
-					}
-				}
-			}
+			rollDiceTurn(countred, gotired, winred);
 			if (countred == 1 && d + randomNumber < 63)
 			{
 				d += randomNumber;
@@ -1230,59 +977,7 @@ void fblue(int &i, int &j, int &k, int &l, int noOfPlayers)
 			cin >> rollDice;
 			if (rollDice == 'y')
 			{
-				if (countblue > 1)
-				{
-					cout << "Which goti you want to move: ";
-					cin >> gotiNumber;
-					if (gotiNumber == 1 && i + randomNumber < 58)
-					{
-						i += randomNumber;
-						path[i] = gotiblue[0];
-						path[i - randomNumber] = ' ';
-						if (i == 57)
-						{
-							cout << "Your goti won.";
-							path[i] = ' ';
-							winblue++;
-						}
-					}
-					else if (gotiNumber == 2 && j + randomNumber < 58)
-					{
-						j += randomNumber;
-						path[j] = gotiblue[1];
-						path[j - randomNumber] = ' ';
-						if (j == 57)
-						{
-							cout << "Your goti won.";
-							path[j] = ' ';
-							winblue++;
-						}
-					}
-					else if (gotiNumber == 3 && k + randomNumber < 58)
-					{
-						k += randomNumber;
-						path[k] = gotiblue[2];
-						path[k - randomNumber] = ' ';
-						if (k == 57)
-						{
-							cout << "Your goti won.";
-							path[k] = ' ';
-							winblue++;
-						}
-					}
-					else if (gotiNumber == 4 && l + randomNumber < 58)
-					{
-						l += randomNumber;
-						path[l] = gotiblue[3];
-						path[l - randomNumber] = ' ';
-						if (l == 57)
-						{
-							cout << "Your goti won.";
-							path[l] = ' ';
-							winblue++;
-						}
-					}
-				}
+				rollDiceTurn(countblue, gotiblue, winblue);
 				if (countblue == 1 && i + randomNumber < 58)
 				{
 					i += randomNumber;
@@ -1337,59 +1032,7 @@ void fblue(int &i, int &j, int &k, int &l, int noOfPlayers)
 		}
 		if (randomNumber < 6 && countblue != 0 || randomNumber == 6 && countblue == 4)
 		{
-			if (countblue > 1)
-			{
-				cout << "Which goti you want to move: ";
-				cin >> gotiNumber;
-				if (gotiNumber == 1 && i + randomNumber < 58)
-				{
-					i += randomNumber;
-					path[i] = gotiblue[0];
-					path[i - randomNumber] = ' ';
-					if (i == 57)
-					{
-						cout << "Your goti won.";
-						path[i] = ' ';
-						winblue++;
-					}
-				}
-				else if (gotiNumber == 2 && j + randomNumber < 58)
-				{
-					j += randomNumber;
-					path[j] = gotiblue[1];
-					path[j - randomNumber] = ' ';
-					if (j == 57)
-					{
-						cout << "Your goti won.";
-						path[j] = ' ';
-						winblue++;
-					}
-				}
-				else if (gotiNumber == 3 && k + randomNumber < 58)
-				{
-					k += randomNumber;
-					path[k] = gotiblue[2];
-					path[k - randomNumber] = ' ';
-					if (k == 57)
-					{
-						cout << "Your goti won.";
-						path[k] = ' ';
-						winblue++;
-					}
-				}
-				else if (gotiNumber == 4 && l + randomNumber < 58)
-				{
-					l += randomNumber;
-					path[l] = gotiblue[3];
-					path[l - randomNumber] = ' ';
-					if (l == 57)
-					{
-						cout << "Your goti won.";
-						path[l] = ' ';
-						winblue++;
-					}
-				}
-			}
+			rollDiceTurn(countblue, gotiblue, winblue);
 			if (countblue == 1 && i + randomNumber < 58)
 			{
 				i += randomNumber;
