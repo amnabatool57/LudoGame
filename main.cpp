@@ -19,8 +19,9 @@ void colorGreenGraphics();
 void colorTransparentGraphics();
 void rollDiceRandom(string);
 void diceFunction(int &, int, int, int);
-void rollDiceTurn(int &, char[], int &);
+void rollDiceTurn(int &, char[], int &, int, int &, int &, int &, int &);
 void reloadGraphics();
+void winnerCheck(string, int &);
 
 char blue[12][12], red[12][12], yellow[12][12], green[12][12];
 char path[72], gotiblue[4] = {'a', 'b', 'c', 'd'}, gotired[4] = {'e', 'f', 'g', 'h'}, gotiyellow[4] = {'i', 'j', 'k', 'l'}, gotigreen[4] = {'m', 'n', 'o', 'p'}, inputText, rollDice;
@@ -500,7 +501,7 @@ void rollDiceRandom(string turn)
 	randomNumber = 1 + rand() % 6;
 	cout << "Your dice gave: " << randomNumber << endl;
 }
-void rollDiceTurn(int &countColor, char gotiColor[], int &winColor)
+void rollDiceTurn(int &countColor, char gotiColor[], int &winColor, int no, int &q, int &r, int &s, int &t)
 {
 	if (countColor > 1)
 	{
@@ -555,6 +556,32 @@ void rollDiceTurn(int &countColor, char gotiColor[], int &winColor)
 			}
 		}
 	}
+	if (countColor == 1 && q + randomNumber < no)
+	{
+		q += randomNumber;
+		path[q] = gotiColor[0];
+		path[q - randomNumber] = ' ';
+		if (q == no-1)
+		{
+			cout << "Your goti won.";
+			path[q] = ' ';
+			winColor++;
+		}
+	}
+}
+void winnerCheck(string turn, int &winColor){
+	if (winColor == 4)
+	{
+		winner++;
+		if (winner == 1)
+			winner1 = "winner1 "+turn;
+		if (winner == 2)
+			winner2 = "winner2 "+turn;
+		if (winner == 3)
+			winner3 = "winner3 "+turn;
+		else
+			winner4 = "winner4 "+turn;
+	}
 }
 void fgreen(int &q, int &r, int &s, int &t, int noOfPlayers)
 {
@@ -592,19 +619,8 @@ void fgreen(int &q, int &r, int &s, int &t, int noOfPlayers)
 			cin >> rollDice;
 			if (rollDice == 'y')
 			{
-				rollDiceTurn(countgreen, gotigreen, wingreen);
-				if (countgreen == 1 && q + randomNumber < 73)
-				{
-					q += randomNumber;
-					path[q] = gotigreen[0];
-					path[q - randomNumber] = ' ';
-					if (q == 72)
-					{
-						cout << "Your goti won.";
-						path[q] = ' ';
-						wingreen++;
-					}
-				}
+				rollDiceTurn(countgreen, gotigreen, wingreen, 73, q, r, s, t);
+				winnerCheck("green", wingreen);
 				reloadGraphics();
 				fgreen(q, r, s, t, noOfPlayers);
 			}
@@ -631,31 +647,8 @@ void fgreen(int &q, int &r, int &s, int &t, int noOfPlayers)
 		}
 		if (randomNumber < 6 && countgreen != 0 || randomNumber == 6 && countgreen == 4)
 		{
-			rollDiceTurn(countgreen, gotigreen, wingreen);
-			if (countgreen == 1 && q + randomNumber < 73)
-			{
-				q += randomNumber;
-				path[q] = gotigreen[0];
-				path[q - randomNumber] = ' ';
-				if (q == 72)
-				{
-					cout << "Your goti won.";
-					path[q] = ' ';
-					wingreen++;
-				}
-			}
-			if (wingreen == 4)
-			{
-				winner++;
-				if (winner == 1)
-					winner1 = "winner1 green";
-				if (winner == 2)
-					winner2 = "winner2 green";
-				if (winner == 3)
-					winner3 = "winner3 green";
-				else
-					winner4 = "winner4 green";
-			}
+			rollDiceTurn(countgreen, gotigreen, wingreen, 73, q, r, s, t);
+			winnerCheck("green", wingreen);
 			reloadGraphics();
 			if (randomNumber == 6)
 				fgreen(q, r, s, t, noOfPlayers);
@@ -703,31 +696,8 @@ void fyellow(int &m, int &n, int &o, int &p, int noOfPlayers)
 			cin >> rollDice;
 			if (rollDice == 'y')
 			{
-				rollDiceTurn(countyellow, gotiyellow, winyellow);
-				if (countyellow == 1 && m + randomNumber < 68)
-				{
-					m += randomNumber;
-					path[m] = gotiyellow[0];
-					path[m - randomNumber] = ' ';
-					if (m == 67)
-					{
-						cout << "Your goti won.";
-						path[m] = ' ';
-						winyellow++;
-					}
-				}
-				if (winyellow == 4)
-				{
-					winner++;
-					if (winner == 1)
-						winner1 = "winner1 yellow";
-					if (winner == 2)
-						winner2 = "winner2 yellow";
-					if (winner == 3)
-						winner3 = "winner3 yellow";
-					else
-						winner4 = "winner4 yellow";
-				}
+				rollDiceTurn(countyellow, gotiyellow, winyellow, 68, m, n, o, p);
+				winnerCheck("yellow", winyellow);
 				reloadGraphics();
 				fyellow(m, n, o, p, noOfPlayers);
 			}
@@ -754,31 +724,8 @@ void fyellow(int &m, int &n, int &o, int &p, int noOfPlayers)
 		}
 		if (randomNumber < 6 && countyellow != 0 || randomNumber == 6 && countyellow == 4)
 		{
-			rollDiceTurn(countyellow, gotiyellow, winyellow);
-			if (countyellow == 1 && m + randomNumber < 68)
-			{
-				m += randomNumber;
-				path[m] = gotiyellow[0];
-				path[m - randomNumber] = ' ';
-				if (m == 67)
-				{
-					cout << "Your goti won.";
-					path[m] = ' ';
-					winyellow++;
-				}
-			}
-			if (winyellow == 4)
-			{
-				winner++;
-				if (winner == 1)
-					winner1 = "winner1 yellow";
-				if (winner == 2)
-					winner2 = "winner2 yellow";
-				if (winner == 3)
-					winner3 = "winner3 yellow";
-				else
-					winner4 = "winner4 yellow";
-			}
+			rollDiceTurn(countyellow, gotiyellow, winyellow, 68, m, n, o, p);
+			winnerCheck("yellow", winyellow);
 			reloadGraphics();
 			if (randomNumber == 6)
 				fyellow(m, n, o, p, noOfPlayers);
@@ -828,31 +775,8 @@ void fred(int &d, int &e, int &f, int &g, int noOfPlayers)
 			cin >> rollDice;
 			if (rollDice == 'y')
 			{
-				rollDiceTurn(countred, gotired, winred);
-				if (countred == 1 && d + randomNumber < 63)
-				{
-					d += randomNumber;
-					path[d] = gotiblue[0];
-					path[d - randomNumber] = ' ';
-					if (d == 62)
-					{
-						cout << "Your goti won.";
-						path[d] = ' ';
-						winred++;
-					}
-				}
-				if (winred == 4)
-				{
-					winner++;
-					if (winner == 1)
-						winner1 = "winner1 red";
-					if (winner == 2)
-						winner2 = "winner2 red";
-					if (winner == 3)
-						winner3 = "winner3 red";
-					else
-						winner4 = "winner4 red";
-				}
+				rollDiceTurn(countred, gotired, winred, 63, d, e, f, g);
+				winnerCheck("red", winred);
 				reloadGraphics();
 				fred(d, e, f, g, noOfPlayers);
 			}
@@ -879,31 +803,8 @@ void fred(int &d, int &e, int &f, int &g, int noOfPlayers)
 		}
 		if (randomNumber < 6 && countred != 0 || randomNumber == 6 && countred == 4)
 		{
-			rollDiceTurn(countred, gotired, winred);
-			if (countred == 1 && d + randomNumber < 63)
-			{
-				d += randomNumber;
-				path[d] = gotired[0];
-				path[d - randomNumber] = ' ';
-				if (d == 62)
-				{
-					cout << "Your goti won.";
-					path[d] = ' ';
-					winred++;
-				}
-			}
-			if (winred == 4)
-			{
-				winner++;
-				if (winner == 1)
-					winner1 = "winner1 red";
-				if (winner == 2)
-					winner2 = "winner2 red";
-				if (winner == 3)
-					winner3 = "winner3 red";
-				else
-					winner4 = "winner4 red";
-			}
+			rollDiceTurn(countred, gotired, winred, 63, d, e, f, g);
+			winnerCheck("red", winred);
 			reloadGraphics();
 			if (randomNumber == 6)
 				fred(d, e, f, g, noOfPlayers);
@@ -950,31 +851,8 @@ void fblue(int &i, int &j, int &k, int &l, int noOfPlayers)
 			cin >> rollDice;
 			if (rollDice == 'y')
 			{
-				rollDiceTurn(countblue, gotiblue, winblue);
-				if (countblue == 1 && i + randomNumber < 58)
-				{
-					i += randomNumber;
-					path[i] = gotiblue[0];
-					path[i - randomNumber] = ' ';
-					if (i == 57)
-					{
-						cout << "Your goti won.";
-						path[i] = ' ';
-						winblue++;
-					}
-				}
-				if (winblue == 4)
-				{
-					winner++;
-					if (winner == 1)
-						winner1 = "winner1 blue";
-					if (winner == 2)
-						winner2 = "winner2 blue";
-					if (winner == 3)
-						winner3 = "winner3 blue";
-					else
-						winner4 = "winner4 blue";
-				}
+				rollDiceTurn(countblue, gotiblue, winblue, 58, i, j, k, l);
+				winnerCheck("blue", winblue);
 				reloadGraphics();
 				fblue(i, j, k, l, noOfPlayers);
 			}
@@ -1001,31 +879,8 @@ void fblue(int &i, int &j, int &k, int &l, int noOfPlayers)
 		}
 		if (randomNumber < 6 && countblue != 0 || randomNumber == 6 && countblue == 4)
 		{
-			rollDiceTurn(countblue, gotiblue, winblue);
-			if (countblue == 1 && i + randomNumber < 58)
-			{
-				i += randomNumber;
-				path[i] = gotiblue[0];
-				path[i - randomNumber] = ' ';
-				if (i == 57)
-				{
-					cout << "Your goti won.";
-					path[i] = ' ';
-					winblue++;
-				}
-			}
-			if (winblue == 4)
-			{
-				winner++;
-				if (winner == 1)
-					winner1 = "winner1 blue";
-				if (winner == 2)
-					winner2 = "winner2 blue";
-				if (winner == 3)
-					winner3 = "winner3 blue";
-				else
-					winner4 = "winner4 blue";
-			}
+			rollDiceTurn(countblue, gotiblue, winblue, 58, i, j, k, l);
+			winnerCheck("blue", winblue);
 			reloadGraphics();
 			if (randomNumber == 6)
 				fblue(i, j, k, l, noOfPlayers);
